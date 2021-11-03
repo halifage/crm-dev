@@ -1,0 +1,15 @@
+<div class="justify-center">
+  <h1 mat-dialog-title>Board</h1>
+  <div matDialogContent class="justify-center">
+    <p>What shall we call this board?</p>
+    <mat-form-field>
+      <input placeholder="title" matInput [(ngModel)]="dialogData"/>
+    </mat-form-field>
+  </div>
+  <div matDialogActions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="dialogData" [disabled]="!dialogData?.length" cdkFocusInitial>
+      Create
+    </button>
+  </div>
+</div>

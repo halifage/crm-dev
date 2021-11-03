@@ -1,0 +1,20 @@
+<div>
+  <form [formGroup]="taskForm">
+    <mat-form-field>
+      <mat-label>Company Name</mat-label>
+      <input matInput formControlName="companyName">
+      <mat-error *ngIf="taskForm.get('companyName')?.errors">This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Company Address</mat-label>
+      <input matInput formArrayName="companyAddress">
+      <mat-error *ngIf="taskForm.get('companyAddress')?.errors">This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>industry</mat-label>
+      <input matInput formControlName="companyIndustry">
+      <mat-hint>Industry in which the company operates</mat-hint>
+      <mat-error *ngIf="taskForm.get('companyIndustry')?.errors">This field is required</mat-error>
+    </mat-form-field>
+  </form>
+</div>
