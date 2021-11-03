@@ -43,6 +43,22 @@ export class BoardsComponent implements OnInit {
           companyAddress: 'somewhere',
           companyIndustry: 'something'
         }]
+      },
+      {
+        title: 'Board 2',
+        tasks: [{
+          companyName: 'Bollore',
+          companyAddress: 'somewhere',
+          companyIndustry: 'something'
+        }]
+      },
+      {
+        title: 'Board 2',
+        tasks: [{
+          companyName: 'Bollore',
+          companyAddress: 'somewhere',
+          companyIndustry: 'something'
+        }]
       });
   }
 

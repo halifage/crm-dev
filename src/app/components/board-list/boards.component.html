@@ -1,23 +1,21 @@
 <!--<div class="main-div">-->
   <div class="new-board-button">
-<!--    <button mat-raised-button color="accent" cdkDragDisabled (click)="openBoardDialog()">-->
-    <button mat-raised-button color="accent" (click)="addBoard()">
+    <button mat-raised-button color="accent" cdkDragDisabled (click)="openBoardDialog()">
+<!--    <button mat-raised-button color="accent" (click)="addBoard()">-->
       <mat-icon>add</mat-icon>
       Add Board
     </button>
   </div>
   <div class="boards-container">
-    <div class="board" *ngFor="let item of items">
-    </div>
+    <app-board *ngFor="let board of boards" [board]="board" class="board"></app-board>
   </div>
+<!--    <div class="board" *ngFor="let item of items"></div>-->
 <!--</div>-->
   <div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">
-    <!--  <div class="board-container">-->
     <app-board cdkDrag *ngFor="let board of boards" [board]="board" class="board">
       <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>
     </app-board>
-<!--    &lt;!&ndash;  </div>&ndash;&gt;-->
-<!--  </div>-->
+  </div>
 <!--  <div *ngIf="boards.length" class="content-wrapper">-->
 <!--    &lt;!&ndash;    <div class="container-wrapper">&ndash;&gt;-->
 <!--    &lt;!&ndash;      <div class="container">&ndash;&gt;-->
