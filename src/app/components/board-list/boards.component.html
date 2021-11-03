@@ -1,21 +1,34 @@
 <!--<div class="main-div">-->
   <div class="new-board-button">
-    <button mat-raised-button color="accent" cdkDragDisabled (click)="openBoardDialog()">
-<!--    <button mat-raised-button color="accent" (click)="addBoard()">-->
+    <button mat-raised-button color="accent" (click)="openBoardDialog()">
       <mat-icon>add</mat-icon>
       Add Board
     </button>
   </div>
   <div class="boards-container">
-    <app-board *ngFor="let board of boards" [board]="board" class="board"></app-board>
+<!--    <app-board *ngFor="let board of boards" [board]="board" class="board"></app-board>-->
+    <div *ngFor="let board of boards" class="board">
+      <mat-card
+        cdkDropList
+        id="{{board?.title}}"
+        #todoList="cdkDropList"
+        [cdkDropListData]="board?.tasks"
+        [cdkDropListConnectedTo]="boardTitles"
+        (cdkDropListDropped)="drop($event)">
+        <mat-card-title>{{board?.title}}</mat-card-title>
+        <mat-card-content>
+          <app-task *ngFor="let task of board?.tasks" [task]="task" cdkDrag></app-task>
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 <!--    <div class="board" *ngFor="let item of items"></div>-->
 <!--</div>-->
-  <div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">
-    <app-board cdkDrag *ngFor="let board of boards" [board]="board" class="board">
-      <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>
-    </app-board>
-  </div>
+<!--  <div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">-->
+<!--    <app-board cdkDrag *ngFor="let board of boards" [board]="board" class="board">-->
+<!--      <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>-->
+<!--    </app-board>-->
+<!--  </div>-->
 <!--  <div *ngIf="boards.length" class="content-wrapper">-->
 <!--    &lt;!&ndash;    <div class="container-wrapper">&ndash;&gt;-->
 <!--    &lt;!&ndash;      <div class="container">&ndash;&gt;-->

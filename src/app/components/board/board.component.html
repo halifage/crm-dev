@@ -1,8 +1,12 @@
-<!--<div class="board">-->
-<mat-card class="task">
+<mat-card
+  cdkDropList
+  id="{{board?.title}}"
+  #todoList="cdkDropList"
+  [cdkDropListData]="board?.tasks"
+  [cdkDropListConnectedTo]="[]"
+  (cdkDropListDropped)="drop($event)">
   <mat-card-title>{{board?.title}}</mat-card-title>
   <mat-card-content>
-    <app-task *ngFor="let task of board?.tasks" [task]="task"></app-task>
+    <app-task *ngFor="let task of board?.tasks" [task]="task" cdkDrag></app-task>
   </mat-card-content>
 </mat-card>
-<!--</div>-->

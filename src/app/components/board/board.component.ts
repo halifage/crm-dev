@@ -56,4 +56,7 @@ export class BoardComponent implements OnInit {
     // this.boardService.deleteBoard(this.board.id);
   }
 
+  drop($event: CdkDragDrop<ProspectiveClient[] | undefined, any>) {
+    console.log('Dropped: ', $event)
+  }
 }

@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Board} from "../../model/board";
-import {CdkDragDrop} from "@angular/cdk/drag-drop";
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {BoardService} from "../../services/board.service";
 import {MatDialog} from "@angular/material/dialog";
 import {BoardDialogComponent} from "../board-dialog/board-dialog.component";
+import {ProspectiveClient} from "../../model/prospective-client";
 
 @Component({
   selector: 'app-board-list',
@@ -13,7 +14,7 @@ import {BoardDialogComponent} from "../board-dialog/board-dialog.component";
 export class BoardsComponent implements OnInit {
 
   boards: Board[] = [];
-  items: string[] = [];
+  boardTitles: string[] = [];
 
   constructor(private boardService: BoardService, private dialog: MatDialog) {
   }
@@ -37,7 +38,7 @@ export class BoardsComponent implements OnInit {
         }]
       },
       {
-        title: 'Board 2',
+        title: 'Board 3',
         tasks: [{
           companyName: 'Bollore',
           companyAddress: 'somewhere',
@@ -45,7 +46,7 @@ export class BoardsComponent implements OnInit {
         }]
       },
       {
-        title: 'Board 2',
+        title: 'Board 4',
         tasks: [{
           companyName: 'Bollore',
           companyAddress: 'somewhere',
@@ -53,17 +54,23 @@ export class BoardsComponent implements OnInit {
         }]
       },
       {
-        title: 'Board 2',
+        title: 'Board 5',
         tasks: [{
           companyName: 'Bollore',
           companyAddress: 'somewhere',
           companyIndustry: 'something'
         }]
       });
+
+    this.boardTitles = this.boards.map(board => board.title);
   }
 
-  drop($event: CdkDragDrop<Board[], any>) {
+  drop(event: CdkDragDrop<any[], any>) {
+    if (event.container === event.previousContainer) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex)
+    }
 
+    transferArrayItem(event.previousContainer.data, event.container.data, event.previousIndex, event.currentIndex);
   }
 
   openBoardDialog(): void {
@@ -80,9 +87,5 @@ export class BoardsComponent implements OnInit {
         });
       }
     });
-  }
-
-  addBoard() {
-    this.items.push('item');
   }
 }
