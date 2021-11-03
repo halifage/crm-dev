@@ -1,28 +1,32 @@
-<!--<div class="main-div">-->
-  <div class="new-board-button">
-    <button mat-raised-button color="accent" (click)="openBoardDialog()">
-      <mat-icon>add</mat-icon>
-      Add Board
-    </button>
+<div class="new-board-button">
+  <button mat-raised-button color="primary" (click)="openBoardDialog()">
+    <mat-icon>add</mat-icon>
+    Add Board
+  </button>
+</div>
+<div class="boards-container">
+  <div *ngFor="let board of boards" class="board">
+    <mat-card
+      cdkDropList
+      id="{{board?.title}}"
+      [cdkDropListData]="board?.tasks"
+      [cdkDropListConnectedTo]="boardTitles"
+      (cdkDropListDropped)="drop($event)">
+      <mat-card-title>{{board?.title}}
+        <button mat-raised-button color="primary" (click)="addTask(board.title)">
+          <mat-icon>add</mat-icon>
+          Add Task
+        </button>
+        <button mat-icon-button (click)="deleteBoard(board)" matTooltip="Delete column">
+          <mat-icon color="warn" id="delete-board">close</mat-icon>
+        </button>
+      </mat-card-title>
+      <mat-card-content>
+        <app-task *ngFor="let task of board?.tasks" [task]="task" cdkDrag></app-task>
+      </mat-card-content>
+    </mat-card>
   </div>
-  <div class="boards-container">
-<!--    <app-board *ngFor="let board of boards" [board]="board" class="board"></app-board>-->
-    <div *ngFor="let board of boards" class="board">
-      <mat-card
-        cdkDropList
-        id="{{board?.title}}"
-        [cdkDropListData]="board?.tasks"
-        [cdkDropListConnectedTo]="boardTitles"
-        (cdkDropListDropped)="drop($event)">
-        <mat-card-title>{{board?.title}}
-        <button mat-icon-button (click)="deleteBoard(board)"><mat-icon color="warn" id="delete-board">close</mat-icon></button>
-        </mat-card-title>
-        <mat-card-content>
-          <app-task *ngFor="let task of board?.tasks" [task]="task" cdkDrag></app-task>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </div>
+</div>
 <!--    <div class="board" *ngFor="let item of items"></div>-->
 <!--</div>-->
 <!--  <div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">-->

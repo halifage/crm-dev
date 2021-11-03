@@ -92,4 +92,13 @@ export class BoardsComponent implements OnInit {
   deleteBoard(event: Board) {
     this.boards.splice(this.boards.indexOf(event), 1);
   }
+
+  addTask(title: string) {
+    this.boards.filter(board => board.title === title).map(board =>
+      board.tasks.push({
+      companyName: 'Camrail',
+      companyAddress: 'Douala',
+      companyIndustry: 'Transport'
+    }))
+  }
 }

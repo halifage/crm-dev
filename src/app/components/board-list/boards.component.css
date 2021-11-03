@@ -8,17 +8,18 @@
   display: flex;
   flex-direction: row;
   overflow-x: auto;
+  background-color: lightgray;
 }
 
 .board {
   display: flex;
   min-width: 25em;
   margin: 1em;
-  /*border: 0.1em solid gray;*/
 }
 
 mat-card {
   width: 100%;
+  background-color: whitesmoke;
 }
 
 .cdk-drag-preview {
