@@ -88,4 +88,8 @@ export class BoardsComponent implements OnInit {
       }
     });
   }
+
+  deleteBoard(event: Board) {
+    this.boards.splice(this.boards.indexOf(event), 1);
+  }
 }

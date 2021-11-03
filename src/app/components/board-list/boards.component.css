@@ -14,9 +14,39 @@
   display: flex;
   min-width: 25em;
   margin: 1em;
-  border: 0.1em solid gray;
+  /*border: 0.1em solid gray;*/
 }
 
 mat-card {
   width: 100%;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+  0 8px 10px 1px rgba(0, 0, 0, 0.14),
+  0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 300ms ease-in-out;
+}
+
+.cdk-drop-list-dragging .cdk-drag  {
+  transition: transform 500ms ease-in-out;
+}
+
+mat-card-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#delete-board {
+  font-weight: bolder;
 }

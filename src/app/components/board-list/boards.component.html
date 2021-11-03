@@ -11,11 +11,12 @@
       <mat-card
         cdkDropList
         id="{{board?.title}}"
-        #todoList="cdkDropList"
         [cdkDropListData]="board?.tasks"
         [cdkDropListConnectedTo]="boardTitles"
         (cdkDropListDropped)="drop($event)">
-        <mat-card-title>{{board?.title}}</mat-card-title>
+        <mat-card-title>{{board?.title}}
+        <button mat-icon-button (click)="deleteBoard(board)"><mat-icon color="warn" id="delete-board">close</mat-icon></button>
+        </mat-card-title>
         <mat-card-content>
           <app-task *ngFor="let task of board?.tasks" [task]="task" cdkDrag></app-task>
         </mat-card-content>
