@@ -1,5 +1,7 @@
-<mat-card>
-  <div>{{task?.companyName}}</div>
-  <div>{{task?.companyIndustry}}</div>
-  <div>{{task?.nextMeetingDate}}</div>
-</mat-card>
+<div class="task-container">
+  <mat-card class="mat-elevation-z3" cdkDrag>
+    <div>{{task?.companyName}}</div>
+    <div>{{task?.companyIndustry}}</div>
+    <div>{{task?.nextMeetingDate}}</div>
+  </mat-card>
+</div>

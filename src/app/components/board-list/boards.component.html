@@ -22,21 +22,8 @@
         </button>
       </mat-card-title>
       <mat-card-content>
-        <app-task *ngFor="let task of board?.tasks" [task]="task" cdkDrag></app-task>
+        <app-task *ngFor="let task of board?.tasks" [task]="task"></app-task>
       </mat-card-content>
     </mat-card>
   </div>
 </div>
-<!--    <div class="board" *ngFor="let item of items"></div>-->
-<!--</div>-->
-<!--  <div cdkDropList cdkDropListOrientation="horizontal" class="boards" (cdkDropListDropped)="drop($event)">-->
-<!--    <app-board cdkDrag *ngFor="let board of boards" [board]="board" class="board">-->
-<!--      <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>-->
-<!--    </app-board>-->
-<!--  </div>-->
-<!--  <div *ngIf="boards.length" class="content-wrapper">-->
-<!--    &lt;!&ndash;    <div class="container-wrapper">&ndash;&gt;-->
-<!--    &lt;!&ndash;      <div class="container">&ndash;&gt;-->
-<!--    &lt;!&ndash;      </div>&ndash;&gt;-->
-<!--    &lt;!&ndash;    </div>&ndash;&gt;-->
-<!--  </div>-->
