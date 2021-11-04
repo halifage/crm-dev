@@ -11,10 +11,64 @@
       <mat-error *ngIf="taskForm.get('companyAddress')?.errors">This field is required</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <mat-label>industry</mat-label>
+      <mat-label>Industry</mat-label>
       <input matInput formControlName="companyIndustry">
       <mat-hint>Industry in which the company operates</mat-hint>
       <mat-error *ngIf="taskForm.get('companyIndustry')?.errors">This field is required</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Company Type</mat-label>
+      <mat-select formControlName="companyType">
+        <mat-option value="Group">Group</mat-option>
+        <mat-option value="Branch">Branch</mat-option>
+        <mat-option value="Multinational">Multinational</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Contact Person</mat-label>
+      <input matInput formControlName="contactName">
+      <mat-hint>Name of contact person</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Role</mat-label>
+      <input matInput formControlName="contactRole">
+      <mat-hint>Role / position of contact person in the company</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="contactPhone">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="contactEmail">
+      <mat-error *ngIf="taskForm.get('contactEmail')?.errors">Invalid email format</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Decision Maker</mat-label>
+      <input matInput formControlName="decisionMakerName">
+      <mat-hint>Name of decider</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="decisionMakerPhone">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="decisionMakerEmail">
+      <mat-error *ngIf="taskForm.get('decisionMakerEmail')?.errors">Invalid email format</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Agent Assigned</mat-label>
+      <input matInput formControlName="assignee">
+      <mat-hint>Name of Agent</mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Agent Notes</mat-label>
+      <textarea matInput formControlName="agentNotes"></textarea>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>History</mat-label>
+      <textarea matInput formControlName="history"></textarea>
     </mat-form-field>
   </form>
 </div>

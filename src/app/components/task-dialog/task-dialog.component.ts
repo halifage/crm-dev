@@ -27,6 +27,17 @@ export class TaskDialogComponent implements OnInit {
     companyName: new FormControl(null, Validators.required),
     companyAddress: new FormControl(null, Validators.required),
     companyIndustry: new FormControl(null, Validators.required),
+    contactEmail: new FormControl(null, Validators.email),
+    contactPhone: new FormControl(null),
+    contactRole: new FormControl(null),
+    companyType: new FormControl(null),
+    contactName: new FormControl(null),
+    decisionMakerName: new FormControl(null),
+    decisionMakerPhone: new FormControl(null),
+    decisionMakerEmail: new FormControl(null, Validators.email),
+    assignee: new FormControl(null),
+    agentNotes: new FormControl(null),
+    history: new FormControl([])
   })
   constructor(
     private fb: FormBuilder,
