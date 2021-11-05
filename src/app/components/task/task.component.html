@@ -1,7 +1,16 @@
 <div class="task-container">
   <mat-card class="mat-elevation-z3" cdkDrag>
-    <div>{{task?.companyName}}</div>
-    <div>{{task?.companyIndustry}}</div>
-    <div>{{task?.nextMeetingDate}}</div>
+    <mat-card-title>
+      <div class="task-header">
+        <div>{{task?.companyName}}</div>
+        <button mat-icon-button (click)="editTask(task)" [routerLink]="'/task-edit'">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </mat-card-title>
+    <mat-card-content>
+      <div>{{task?.companyIndustry}}</div>
+      <div>{{task?.nextMeetingDate}}</div>
+    </mat-card-content>
   </mat-card>
 </div>

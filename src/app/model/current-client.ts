@@ -1,4 +1,4 @@
-import {HistoryNote} from "./history-note";
+import {NotesHistory} from "./notes-history";
 
 // export interface CurrentClient {
 //   companyName: string;

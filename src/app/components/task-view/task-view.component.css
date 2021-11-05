@@ -1,0 +1,44 @@
+.task-view-container {
+  display: flex;
+  /*justify-content: flex-start;*/
+  width: 100%;
+  height: 92%;
+}
+
+.fields {
+  max-height: 95%;
+  width: 60%;
+  padding: 1em;
+  background-color: whitesmoke;
+}
+
+.notes-history {
+  max-height: 95%;
+  width: 40%;
+  padding: 1em;
+  background-color: whitesmoke;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-cell .mat-header-cell {
+  padding-right: 2em !important;
+}
+
+td th {
+  padding-right: 2em !important;
+}
+
+#company-address {
+  width: 95%;
+}
+
+mat-form-field {
+  width: 45%;
+}
+
+h1 {
+  margin-top: 2em;
+}

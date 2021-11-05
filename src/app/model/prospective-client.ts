@@ -1,6 +1,7 @@
-import {HistoryNote} from "./history-note";
+import {NotesHistory} from "./notes-history";
 
 export interface ProspectiveClient {
+  id?: string;
   companyName: string;
   companyAddress: string;
   companyIndustry: string;
@@ -14,6 +15,6 @@ export interface ProspectiveClient {
   assignedAgentName?: string;
   assignedAgentNotes?: string;
   nextMeetingDate?: Date;
-  history?: HistoryNote[];
+  history?: NotesHistory[];
   statusColor?: 'lightsalmon' | 'lightgreen' | 'lightcoral';
 }

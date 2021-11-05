@@ -1,27 +1,14 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {ProspectiveClient} from "../../model/prospective-client";
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import { Component, OnInit } from '@angular/core';
 import {NotesHistory} from "../../model/notes-history";
+import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {MatTableDataSource} from "@angular/material/table";
 
-export interface TaskDialogData {
-  task: Partial<ProspectiveClient>;
-  enableDelete: boolean;
-}
-
-export interface TaskDialogResult {
-  task: ProspectiveClient;
-  delete?: boolean;
-}
-
 @Component({
-  selector: 'app-task-dialog',
-  templateUrl: './task-dialog.component.html',
-  styleUrls: ['./task-dialog.component.css']
+  selector: 'app-task-view',
+  templateUrl: './task-view.component.html',
+  styleUrls: ['./task-view.component.css']
 })
-export class TaskDialogComponent implements OnInit {
-  private backupTask: Partial<ProspectiveClient> = {...this.data.task};
+export class TaskViewComponent implements OnInit {
 
   notesHistory: NotesHistory[] = [];
 
@@ -44,13 +31,7 @@ export class TaskDialogComponent implements OnInit {
   notesHistoryDataSource = new MatTableDataSource<NotesHistory>();
   notesHistoryColumns = ['date', 'agentName', 'note'];
 
-
-  constructor(
-    private fb: FormBuilder,
-    public dialogRef: MatDialogRef<TaskDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: TaskDialogData
-  ) {
-  }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.notesHistory.push({
@@ -60,18 +41,14 @@ export class TaskDialogComponent implements OnInit {
       },
       {
         date: new Date(),
-        text: "notes for history 2",
+        text: "notes for history 2 ljlssflkgslpk vdkspns pkmofgjo[s dafdapkkfs'lmdal;jfj;kadf;mslakfladk'lfkadkfla'dklms.mdsmgfd,mslgmfs,mgfs;",
         agentName: "halifax"
       });
 
     this.notesHistoryDataSource.data = this.notesHistory;
   }
 
-  cancel(): void {
-    // this.data.task.title = this.backupTask.title;
-    // this.data.task.description = this.backupTask.description;
-    this.dialogRef.close(this.data);
+  cancel() {
+
   }
-
-
 }

@@ -5,6 +5,7 @@ import {BoardService} from "../../services/board.service";
 import {MatDialog} from "@angular/material/dialog";
 import {BoardDialogComponent} from "../board-dialog/board-dialog.component";
 import {ProspectiveClient} from "../../model/prospective-client";
+import {TaskDialogComponent} from "../task-dialog/task-dialog.component";
 
 @Component({
   selector: 'app-board-list',
@@ -74,8 +75,8 @@ export class BoardsComponent implements OnInit {
   }
 
   openBoardDialog(): void {
-    const dialogRef = this.dialog.open(BoardDialogComponent, {
-      width: "25em",
+    const dialogRef = this.dialog.open(TaskDialogComponent, {
+      width: "50em",
       data: {}
     });
 

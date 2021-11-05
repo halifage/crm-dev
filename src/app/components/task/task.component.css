@@ -26,3 +26,9 @@ mat-card {
 .task-container {
   padding-top: 1em;
 }
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

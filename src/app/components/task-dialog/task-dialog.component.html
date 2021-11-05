@@ -1,74 +1,121 @@
 <div>
+  <h1>{{taskForm.get('companyName')?.value}}</h1>
   <form [formGroup]="taskForm">
-    <mat-form-field>
-      <mat-label>Company Name</mat-label>
-      <input matInput formControlName="companyName">
-      <mat-error *ngIf="taskForm.get('companyName')?.errors">This field is required</mat-error>
-    </mat-form-field>
-    <mat-form-field>
+    <div class="flex-justify-sb">
+      <mat-form-field>
+        <mat-label>Company Name</mat-label>
+        <input matInput formControlName="companyName">
+        <mat-error *ngIf="taskForm.get('companyName')?.errors">This field is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Industry</mat-label>
+        <input matInput formControlName="companyIndustry">
+        <mat-hint>Industry in which the company operates</mat-hint>
+        <mat-error *ngIf="taskForm.get('companyIndustry')?.errors">This field is required</mat-error>
+      </mat-form-field>
+    </div>
+    <mat-form-field id="company-address">
       <mat-label>Company Address</mat-label>
       <input matInput formArrayName="companyAddress">
       <mat-error *ngIf="taskForm.get('companyAddress')?.errors">This field is required</mat-error>
     </mat-form-field>
-    <mat-form-field>
-      <mat-label>Industry</mat-label>
-      <input matInput formControlName="companyIndustry">
-      <mat-hint>Industry in which the company operates</mat-hint>
-      <mat-error *ngIf="taskForm.get('companyIndustry')?.errors">This field is required</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Company Type</mat-label>
-      <mat-select formControlName="companyType">
-        <mat-option value="Group">Group</mat-option>
-        <mat-option value="Branch">Branch</mat-option>
-        <mat-option value="Multinational">Multinational</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Contact Person</mat-label>
-      <input matInput formControlName="contactName">
-      <mat-hint>Name of contact person</mat-hint>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Role</mat-label>
-      <input matInput formControlName="contactRole">
-      <mat-hint>Role / position of contact person in the company</mat-hint>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Phone</mat-label>
-      <input matInput formControlName="contactPhone">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="contactEmail">
-      <mat-error *ngIf="taskForm.get('contactEmail')?.errors">Invalid email format</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Decision Maker</mat-label>
-      <input matInput formControlName="decisionMakerName">
-      <mat-hint>Name of decider</mat-hint>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Phone</mat-label>
-      <input matInput formControlName="decisionMakerPhone">
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="decisionMakerEmail">
-      <mat-error *ngIf="taskForm.get('decisionMakerEmail')?.errors">Invalid email format</mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Agent Assigned</mat-label>
-      <input matInput formControlName="assignee">
-      <mat-hint>Name of Agent</mat-hint>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>Agent Notes</mat-label>
-      <textarea matInput formControlName="agentNotes"></textarea>
-    </mat-form-field>
-    <mat-form-field>
-      <mat-label>History</mat-label>
-      <textarea matInput formControlName="history"></textarea>
-    </mat-form-field>
+    <div id="panel-expansion">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-description>Capture more information</mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="flex-justify-sb">
+          <mat-form-field>
+            <mat-label>Company Type</mat-label>
+            <mat-select formControlName="companyType">
+              <mat-option value="Group">Group</mat-option>
+              <mat-option value="Branch">Branch</mat-option>
+              <mat-option value="Multinational">Multinational</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Contact Person</mat-label>
+            <input matInput formControlName="contactName">
+            <mat-hint>Name of contact person</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="flex-justify-sb">
+          <mat-form-field>
+            <mat-label>Role</mat-label>
+            <input matInput formControlName="contactRole">
+            <mat-hint>Role / position of contact person in the company</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="contactPhone">
+          </mat-form-field>
+        </div>
+        <div class="flex-justify-sb">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="contactEmail">
+            <mat-error *ngIf="taskForm.get('contactEmail')?.errors">Invalid email format</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Decision Maker</mat-label>
+            <input matInput formControlName="decisionMakerName">
+            <mat-hint>Name of decider</mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="flex-justify-sb">
+          <mat-form-field>
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="decisionMakerPhone">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="decisionMakerEmail">
+            <mat-error *ngIf="taskForm.get('decisionMakerEmail')?.errors">Invalid email format</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="flex-justify-sb">
+          <mat-form-field>
+            <mat-label>Agent Assigned</mat-label>
+            <input matInput formControlName="assignee">
+            <mat-hint>Name of Agent</mat-hint>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Agent Notes</mat-label>
+            <textarea matInput formControlName="agentNotes"></textarea>
+          </mat-form-field>
+        </div>
+      </mat-expansion-panel>
+    </div>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-description>Notes History</mat-panel-description>
+      </mat-expansion-panel-header>
+      <div id="notes-history">
+        <table *ngIf="notesHistory.length > 0" [dataSource]="notesHistoryDataSource" mat-table
+               class="mat-elevation-z3" aria-describedby="Notes History">
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef scope="col">
+              <div class="column-header">Date</div>
+            </th>
+            <td mat-cell *matCellDef="let item">{{item.date | date:'dd/MM/yyyy'}}</td>
+          </ng-container>
+          <ng-container matColumnDef="agentName">
+            <th class="column-header" mat-header-cell *matHeaderCellDef scope="col">Agent Name</th>
+            <td mat-cell *matCellDef="let item">{{item.agentName}}</td>
+          </ng-container>
+          <ng-container matColumnDef="note">
+            <th class="column-header" mat-header-cell *matHeaderCellDef scope="col">Note</th>
+            <td mat-cell *matCellDef="let item" matTooltip="{{item.text}}">{{item.text}}</td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="notesHistoryColumns"></tr>
+          <tr mat-row *matRowDef="let row; let even = even; columns: notesHistoryColumns;"
+              [ngClass]="{'striped-table': even}"></tr>
+        </table>
+      </div>
+    </mat-expansion-panel>
   </form>
+</div>
+<div mat-dialog-actions class="flex-justify-center">
+  <button mat-raised-button color="accent" (click)="cancel()">Cancel</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="taskForm.value">OK</button>
 </div>

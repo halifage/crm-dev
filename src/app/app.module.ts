@@ -17,6 +17,7 @@ import { BoardComponent } from './components/board/board.component';
 import {BoardsComponent} from "./components/board-list/boards.component";
 import { BoardDialogComponent } from './components/board-dialog/board-dialog.component';
 import {FirestoreUtils} from "./Utils/FirestoreUtils";
+import { TaskViewComponent } from './components/task-view/task-view.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {FirestoreUtils} from "./Utils/FirestoreUtils";
     TaskDialogComponent,
     BoardsComponent,
     BoardComponent,
-    BoardDialogComponent
+    BoardDialogComponent,
+    TaskViewComponent
   ],
   imports: [
     BrowserModule,
