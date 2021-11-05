@@ -1,14 +1,14 @@
 <div class="justify-center">
-  <h1 mat-dialog-title>Board</h1>
+  <h1 mat-dialog-title>Add Column</h1>
   <div matDialogContent class="justify-center">
-    <p>What shall we call this board?</p>
+    <p>What shall we call this column?</p>
     <mat-form-field>
-      <input placeholder="title" matInput [(ngModel)]="dialogData"/>
+      <input placeholder="Column name" matInput [(ngModel)]="dialogData"/>
     </mat-form-field>
   </div>
-  <div matDialogActions>
-    <button mat-button (click)="onNoClick()">Cancel</button>
-    <button mat-button [mat-dialog-close]="dialogData" [disabled]="!dialogData?.length" cdkFocusInitial>
+  <div matDialogActions class="flex-justify-sa">
+    <button mat-button  color="accent" (click)="onNoClick()">Cancel</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="dialogData" [disabled]="!dialogData?.length" cdkFocusInitial>
       Create
     </button>
   </div>

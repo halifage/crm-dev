@@ -86,33 +86,6 @@
         </div>
       </mat-expansion-panel>
     </div>
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-description>Notes History</mat-panel-description>
-      </mat-expansion-panel-header>
-      <div id="notes-history">
-        <table *ngIf="notesHistory.length > 0" [dataSource]="notesHistoryDataSource" mat-table
-               class="mat-elevation-z3" aria-describedby="Notes History">
-          <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef scope="col">
-              <div class="column-header">Date</div>
-            </th>
-            <td mat-cell *matCellDef="let item">{{item.date | date:'dd/MM/yyyy'}}</td>
-          </ng-container>
-          <ng-container matColumnDef="agentName">
-            <th class="column-header" mat-header-cell *matHeaderCellDef scope="col">Agent Name</th>
-            <td mat-cell *matCellDef="let item">{{item.agentName}}</td>
-          </ng-container>
-          <ng-container matColumnDef="note">
-            <th class="column-header" mat-header-cell *matHeaderCellDef scope="col">Note</th>
-            <td mat-cell *matCellDef="let item" matTooltip="{{item.text}}">{{item.text}}</td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="notesHistoryColumns"></tr>
-          <tr mat-row *matRowDef="let row; let even = even; columns: notesHistoryColumns;"
-              [ngClass]="{'striped-table': even}"></tr>
-        </table>
-      </div>
-    </mat-expansion-panel>
   </form>
 </div>
 <div mat-dialog-actions class="flex-justify-center">

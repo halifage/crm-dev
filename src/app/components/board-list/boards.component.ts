@@ -1,16 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Board} from "../../model/board";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {BoardService} from "../../services/board.service";
 import {MatDialog} from "@angular/material/dialog";
-import {BoardDialogComponent} from "../board-dialog/board-dialog.component";
-import {ProspectiveClient} from "../../model/prospective-client";
 import {TaskDialogComponent} from "../task-dialog/task-dialog.component";
 
 @Component({
   selector: 'app-board-list',
   templateUrl: './boards.component.html',
-  styleUrls: ['./boards.component.css']
+  styleUrls: ['./boards.component.css'],
+
 })
 export class BoardsComponent implements OnInit {
 

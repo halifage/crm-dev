@@ -1,14 +1,12 @@
-import { EventEmitter } from '@angular/core';
-import {Component, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormControl, Validators} from "@angular/forms";
+import {Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import {ProspectiveClient} from "../../model/prospective-client";
-import {TaskDialogComponent} from "../task-dialog/task-dialog.component";
 import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-task',
   templateUrl: './task.component.html',
-  styleUrls: ['./task.component.css']
+  styleUrls: ['./task.component.css'],
+
 })
 export class TaskComponent implements OnInit {
 

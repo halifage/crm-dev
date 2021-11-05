@@ -1,0 +1,66 @@
+<div class="admin-console-container">
+  <div class="columns-container">
+    <div mat-card-title class="board-title">Columns
+      <div class="new-board-button">
+        <button mat-raised-button color="primary" (click)="openBoardDialog()">
+          <mat-icon>add</mat-icon>
+          Add Column
+        </button>
+      </div>
+    </div>
+    <div class="columns">
+      <div *ngFor="let board of boards" class="column">
+        <mat-card id="new-board">
+          <mat-card-title>{{board?.title}}
+            <button mat-icon-button (click)="deleteBoard(board)" matTooltip="Delete column">
+              <mat-icon color="warn" id="delete-board">close</mat-icon>
+            </button>
+          </mat-card-title>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <mat-divider vertical></mat-divider>
+  <div class="user-config">
+    <div class="users-container">
+      <div matDialogTitle class="flex-justify-center">Users</div>
+      <mat-list>
+        <mat-list-item *ngFor="let item of [1,2,3]">
+          <div id="existing-user" mat-line class="flex-justify-sb">
+            <div>User {{item}} </div>
+            <div class="use-actions">
+              <button mat-icon-button>
+                <mat-icon>edit</mat-icon>
+              </button>
+            <button mat-icon-button>
+                <mat-icon>close</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="add-user">
+      <form [formGroup]="addUserForm">
+        <div matDialogTitle class="flex-justify-center"> Add User</div>
+        <div class="user-fields">
+          <mat-form-field>
+            <mat-label>Email Address</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="addUserForm.get('email')?.errors">Invalid email</mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput>
+            <mat-error *ngIf="addUserForm.get('password')?.errors">this field is required</mat-error>
+          </mat-form-field>
+        </div>
+        <div matDialogActions class="flex-justify-center flex-justify-sa">
+          <button mat-button color="accent">Cancel</button>
+          <button mat-raised-button color="primary" [disabled]="addUserForm.invalid">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -18,6 +18,8 @@ import {BoardsComponent} from "./components/board-list/boards.component";
 import { BoardDialogComponent } from './components/board-dialog/board-dialog.component';
 import {FirestoreUtils} from "./Utils/FirestoreUtils";
 import { TaskViewComponent } from './components/task-view/task-view.component';
+import { HomeComponent } from './components/home/home.component';
+import { AdminConsoleComponent } from './components/admin-console/admin-console.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { TaskViewComponent } from './components/task-view/task-view.component';
     BoardsComponent,
     BoardComponent,
     BoardDialogComponent,
-    TaskViewComponent
+    TaskViewComponent,
+    HomeComponent,
+    AdminConsoleComponent
   ],
   imports: [
     BrowserModule,
