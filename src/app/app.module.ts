@@ -22,6 +22,7 @@ import {PopupComponent} from './dialogs/popup/popup.component';
 import {TaskDialogComponent} from "./dialogs/task-dialog/task-dialog.component";
 import {BoardDialogComponent} from "./dialogs/board-dialog/board-dialog.component";
 import {LoginComponent} from './components/login/login.component';
+import {AuthGuardModule} from "@angular/fire/auth-guard";
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {LoginComponent} from './components/login/login.component';
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AuthGuardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

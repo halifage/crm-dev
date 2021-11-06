@@ -6,8 +6,8 @@
 
 .card-container {
   flex-wrap: wrap;
-  padding: 15em 25em;
-  width: 60%;
+  padding: 15% 25%;
+  width: 50%;
 }
 
 mat-icon {

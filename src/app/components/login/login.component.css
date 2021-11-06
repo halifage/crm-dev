@@ -1,0 +1,32 @@
+.user-fields {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 2em;
+  align-content: center;
+}
+
+.login-container {
+  height: 90%;
+  background-color: whitesmoke;
+}
+
+mat-card {
+  height: 60%;
+  margin-top: 10em;
+}
+
+mat-card-content {
+  height: 70%;
+}
+
+mat-form-field {
+  width: 20em;
+}
+
+form {
+  height: 90%;
+  display: flex;
+  align-content: space-around;
+}

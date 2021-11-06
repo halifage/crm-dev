@@ -52,15 +52,15 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Password</mat-label>
-            <input matInput>
-            <mat-error *ngIf="addUserForm.get('password')?.errors">this field is required</mat-error>
+            <input matInput formControlName="password">
+            <mat-error *ngIf="addUserForm.get('password')?.errors">This field is required</mat-error>
           </mat-form-field>
         </div>
+      </form>
         <div matDialogActions class="flex-justify-center flex-justify-sa">
           <button mat-button color="accent">Cancel</button>
-          <button mat-raised-button color="primary" [disabled]="addUserForm.invalid">Create</button>
+          <button mat-raised-button color="primary" [disabled]="addUserForm.invalid" (click)="createUser()">Create</button>
         </div>
-      </form>
     </div>
   </div>
 </div>

@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {Auth, connectAuthEmulator} from "@angular/fire/auth";
-import firebase from "firebase/compat";
-import EmailAuthProvider = firebase.auth.EmailAuthProvider;
-import PhoneAuthProvider = firebase.auth.PhoneAuthProvider;
+import {Component, OnInit} from '@angular/core';
+import {Auth, connectAuthEmulator, signInWithEmailAndPassword} from "@angular/fire/auth";
 import * as firebaseui from "firebaseui";
 import {PopupService} from "../../services/popup.service";
+import Config = firebaseui.auth.Config;
+import {FirebaseApp, getApp} from "@angular/fire/app";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {PopupType} from "../../enum/popup-type";
+import {Router} from "@angular/router";
+import {FirebaseService} from "../../services/firebase.service";
 
 @Component({
   selector: 'app-login',
@@ -13,34 +15,28 @@ import {PopupType} from "../../enum/popup-type";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loginForm = new FormGroup({
+    email: new FormControl(null, [Validators.email, Validators.required]),
+    password: new FormControl(null, Validators.required)
+  })
 
-  firebaseUi: firebaseui;
-  constructor(private firebaseAuth: Auth, private toaster: PopupService) {
-    connectAuthEmulator(this.firebaseAuth, 'localhost', 9099);
+  constructor(private firebaseAuth: Auth, private toaster: PopupService, private router: Router, private firebaseService: FirebaseService) {
   }
 
   ngOnInit(): void {
-    const uiConfig = {
-      signInOptions: [
-        EmailAuthProvider.PROVIDER_ID,
-        {
-          provider: PhoneAuthProvider.PROVIDER_ID,
-          defaultCountry: 'ZA',
-          defaultNationalNumber: '0679132994',
-          loginHint: '+27 67 913 2994',
-          whitelistedCountries: ['+27', '+237']
-        }
-      ],
-      signInSuccessUrl: this.onLoginSuccess.bind(this)
-    };
-
-    this.firebaseUi = new firebaseui.auth.AuthUI(this.firebaseAuth);
-
-    this.firebaseUi.start('#firebaseui-auth-container', uiConfig);
   }
 
-  onLoginSuccess(loginResult: any) {
-    this.toaster.show('Login Successful');
+  signInUser() {
+    this.firebaseService.signInWithEmailAndPassword(this.loginForm.get('email')?.value, this.loginForm.get('password')?.value).then(credential => {
+      console.log(credential)
+      // credential.user.getIdTokenResult(true).then(token => {
+      //   if (!!token.claims.admin) {
+      //   } else if (!!token.claims.sales) {
+      //     this.toaster.show('user is Sales', PopupType.INFO)
+      //   }
+      // })
+      this.toaster.show('login successful');
+      // this.router.navigateByUrl('/admin-console').then();
+    }).catch(() => this.toaster.show('error while login in', PopupType.ERROR))
   }
-
 }

@@ -3,9 +3,13 @@
     <button mat-icon-button [routerLink]="'/home'"><mat-icon>home</mat-icon></button>
     <span>Commercial</span>
     <div>
-      <button mat-icon-button>
+      <button mat-icon-button matTooltip="User profile">
         <mat-icon>account_circle</mat-icon>
       </button>
+      <button mat-icon-button matTooltip="logout" (click)="signOut()">
+        <mat-icon>logout</mat-icon>
+      </button>
+
     </div>
   </mat-toolbar>
   <router-outlet></router-outlet>

@@ -1,4 +1,7 @@
 {
+  "projects": {
+    "default": "crm-poc-48b12"
+  },
   "targets": {
     "crm-poc-48b12": {
       "hosting": {
@@ -7,8 +10,5 @@
         ]
       }
     }
-  },
-  "projects": {
-    "default": "crm-poc-48b12"
   }
 }

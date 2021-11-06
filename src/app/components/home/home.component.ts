@@ -15,13 +15,6 @@ export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog,) { }
 
   ngOnInit(): void {
-    this.dialog.open(ConfirmationDialogComponent, {
-      // width: '500px',
-      data: {
-        title: 'Confirm Action',
-        message: 'All images have been captured. Do you want to go to the Client Pack screen?'
-      }
-    })
   }
 
 }

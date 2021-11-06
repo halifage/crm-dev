@@ -70,7 +70,7 @@ snack-bar-container.mat-snack-bar-container {
 }
 
 .mat-simple-snackbar {
-  font-size: 2em;
+  font-size: 1.2em;
 }
 
 .mat-simple-snackbar-action {
@@ -79,12 +79,13 @@ snack-bar-container.mat-snack-bar-container {
 
 
 /* Works on Chrome/Edge/Safari */
-*::-webkit-scrollbar {
-  width: 8px;
+::-webkit-scrollbar {
+  width: 2px;
+  height: 8px;
 }
 
-*::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   border-radius: 8px;
-  border: 6px solid darkgray;
+  border: 4px solid darkgray;
 }
 
