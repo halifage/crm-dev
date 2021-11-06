@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ProspectiveClient} from "../../model/prospective-client";
 import {Board} from "../../model/board";
-import {CdkDragDrop, moveItemInArray} from "@angular/cdk/drag-drop";
-import {TaskDialogComponent} from "../task-dialog/task-dialog.component";
+import {CdkDragDrop} from "@angular/cdk/drag-drop";
 import {BoardService} from "../../services/board.service";
 import {MatDialog} from "@angular/material/dialog";
 

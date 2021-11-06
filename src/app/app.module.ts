@@ -9,17 +9,19 @@ import {environment} from '../environments/environment';
 import {getAuth, provideAuth} from '@angular/fire/auth';
 import {getFirestore, provideFirestore} from '@angular/fire/firestore';
 import {MaterialModule} from "./material/material.module";
-import { TaskComponent } from './components/task/task.component';
-import { TasksSummaryComponent } from './components/tasks-summary/tasks-summary.component';
-import {TaskDialogComponent} from "./components/task-dialog/task-dialog.component";
+import {TaskComponent} from './components/task/task.component';
+import {TasksSummaryComponent} from './components/tasks-summary/tasks-summary.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { BoardComponent } from './components/board/board.component';
+import {BoardComponent} from './components/board/board.component';
 import {BoardsComponent} from "./components/board-list/boards.component";
-import { BoardDialogComponent } from './components/board-dialog/board-dialog.component';
-import {FirestoreUtils} from "./Utils/FirestoreUtils";
-import { TaskViewComponent } from './components/task-view/task-view.component';
-import { HomeComponent } from './components/home/home.component';
-import { AdminConsoleComponent } from './components/admin-console/admin-console.component';
+import {TaskViewComponent} from './components/task-view/task-view.component';
+import {HomeComponent} from './components/home/home.component';
+import {AdminConsoleComponent} from './components/admin-console/admin-console.component';
+import {ConfirmationDialogComponent} from './dialogs/confirmation-dialog/confirmation-dialog.component';
+import {PopupComponent} from './dialogs/popup/popup.component';
+import {TaskDialogComponent} from "./dialogs/task-dialog/task-dialog.component";
+import {BoardDialogComponent} from "./dialogs/board-dialog/board-dialog.component";
+import {LoginComponent} from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,10 @@ import { AdminConsoleComponent } from './components/admin-console/admin-console.
     BoardDialogComponent,
     TaskViewComponent,
     HomeComponent,
-    AdminConsoleComponent
+    AdminConsoleComponent,
+    ConfirmationDialogComponent,
+    PopupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

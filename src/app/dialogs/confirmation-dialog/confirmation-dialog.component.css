@@ -1,0 +1,17 @@
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 60%;
+}
+
+.button{
+  text-transform: uppercase;
+  margin: 0 2em 0 2em;
+}
+
+.message {
+  margin-top: 2em;
+  margin-bottom: 2em;
+}

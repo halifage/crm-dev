@@ -3,7 +3,7 @@ import {Board} from "../../model/board";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
 import {BoardService} from "../../services/board.service";
 import {MatDialog} from "@angular/material/dialog";
-import {TaskDialogComponent} from "../task-dialog/task-dialog.component";
+import {TaskDialogComponent} from "../../dialogs/task-dialog/task-dialog.component";
 
 @Component({
   selector: 'app-board-list',

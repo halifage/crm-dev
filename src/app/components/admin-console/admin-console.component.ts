@@ -3,8 +3,8 @@ import {Board} from "../../model/board";
 import {BoardService} from "../../services/board.service";
 import {MatDialog} from "@angular/material/dialog";
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from "@angular/cdk/drag-drop";
-import {BoardDialogComponent} from "../board-dialog/board-dialog.component";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {BoardDialogComponent} from "../../dialogs/board-dialog/board-dialog.component";
 
 @Component({
   selector: 'app-admin-console',

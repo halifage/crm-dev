@@ -35,3 +35,56 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 100%;
   height: 100%;
 }
+
+.info-toaster{
+  background-color: steelblue;
+  color: black;
+}
+
+.success-toaster {
+  background-color: lightgreen;
+  color: black;
+}
+
+.warning-toaster {
+  background-color: orange;
+  color: black;
+}
+
+.error-toaster {
+  background-color: lightcoral;
+  color: black;
+}
+
+.info-toaster .success-toaster .error-toaster .warning-toaster {
+  color: black;
+}
+
+.mat-snack-bar-container {
+  max-height: 12vh;
+  max-width: 40vw;
+}
+
+snack-bar-container.mat-snack-bar-container {
+  margin-top: 7em;
+}
+
+.mat-simple-snackbar {
+  font-size: 2em;
+}
+
+.mat-simple-snackbar-action {
+  color: yellow;
+}
+
+
+/* Works on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 6px solid darkgray;
+}
+

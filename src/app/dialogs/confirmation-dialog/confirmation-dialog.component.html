@@ -1,0 +1,12 @@
+<div>
+  <h1 mat-dialog-title>{{data.title}}</h1>
+<!--  <mat-divider></mat-divider>-->
+  <div mat-dialog-content class="message">
+    <div mat-dialog-content>{{data.message}}</div>
+  </div>
+<!--  <mat-divider></mat-divider>-->
+  <div mat-dialog-actions class="action-buttons">
+    <button color="accent" mat-button [mat-dialog-close]="'cancel'">Cancel</button>
+    <button color="primary" mat-raised-button [mat-dialog-close]="'yes'">Yes</button>
+  </div>
+</div>

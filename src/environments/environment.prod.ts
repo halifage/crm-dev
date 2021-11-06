@@ -8,5 +8,6 @@ export const environment = {
     authDomain: 'crm-poc-48b12.firebaseapp.com',
     messagingSenderId: '664408853958',
   },
-  production: true
+  production: true,
+  useEmulator: false
 };
