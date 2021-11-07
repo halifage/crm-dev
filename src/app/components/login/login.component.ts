@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       //   }
       // })
       this.toaster.show('login successful');
-      // this.router.navigateByUrl('/admin-console').then();
+      this.router.navigateByUrl('/home').then();
     }).catch(() => this.toaster.show('error while login in', PopupType.ERROR))
   }
 }

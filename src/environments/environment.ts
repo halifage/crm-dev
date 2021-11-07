@@ -1,7 +1,6 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
 export const environment = {
   firebase: {
     projectId: 'crm-poc-48b12',
@@ -13,7 +12,8 @@ export const environment = {
     messagingSenderId: '664408853958',
   },
   production: false,
-  useEmulator: true
+  useEmulator: true,
+  FIRESTORE_EMULATOR_HOST:"localhost:8080"
 };
 
 /*
