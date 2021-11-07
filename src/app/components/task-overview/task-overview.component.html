@@ -1,0 +1,103 @@
+<div class="main-div">
+  <h1 class="overview-title">Overview</h1>
+  <div *ngIf="!tasks.length" class="no-data">
+    <h1 matDialogTitle>No data to display</h1>
+  </div>
+  <div *ngIf="tasks.length">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <ng-container matColumnDef="prospect">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header" mat-sort-header>Prospect</div>
+<!--          <div class="filter-container">-->
+<!--            <input placeholder="Filter" matInput (input)="filterTasks('prospect', $event)"-->
+<!--                   [(ngModel)]="filters.set('prospect', 'prospect')">-->
+<!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('prospect')" (click)="clearFilter('prospect')"-->
+<!--                      color="accent" inline="true">cancel</mat-icon>-->
+<!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.companyName}}"> {{element?.companyName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="assignedAgentName">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header" mat-sort-header>Agent Assigned</div>
+<!--          <div class="filter-container">-->
+<!--            <input placeholder="Filter" matInput (input)="filterTasks('assignedAgentName', $event)"-->
+<!--                   [(ngModel)]="filters.set('assignedAgentName', 'assignedAgentName')">-->
+<!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('assignedAgentName')" (click)="clearFilter('assignedAgentName')"-->
+<!--                      color="accent" inline="true">cancel</mat-icon>-->
+<!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element?.assignedAgentName}}"> {{element?.assignedAgentName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header" mat-sort-header>Date Created</div>
+<!--          <div class="filter-container">-->
+<!--            <input placeholder="Filter" matInput (input)="filterTasks('createdDate', $event)"-->
+<!--                   [(ngModel)]="filters.set('createdDate','createdDate')">-->
+<!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('createdDate')" (click)="clearFilter('createdDate')"-->
+<!--                      color="accent" inline="true">cancel</mat-icon>-->
+<!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.createdDate}}"> {{element?.createdDate}}</td>
+      </ng-container>
+      <ng-container matColumnDef="columnTitle">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header" mat-sort-header>Current Status</div>
+<!--          <div class="filter-container">-->
+<!--            <input (input)="filterTasks('columnTitle', $event)" [(ngModel)]="filters.set('columnTitle','columnTitle')" matInput-->
+<!--                   placeholder="Filter">-->
+<!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('columnTitle')" (click)="clearFilter('columnTitle')"-->
+<!--                      color="accent" inline="true">cancel</mat-icon>-->
+<!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.columnTitle}}"> {{element?.columnTitle}}</td>
+      </ng-container>
+      <ng-container matColumnDef="lastUpdatedDate">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header" mat-sort-header>Date Updated</div>
+<!--          <div class="filter-container">-->
+<!--            <input (input)="filterTasks('lastUpdatedDate', $event)" [(ngModel)]="filters.set('lastUpdatedDate','lastUpdatedDate')" matInput-->
+<!--                   placeholder="Filter">-->
+<!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('lastUpdatedDate')" (click)="clearFilter('lastUpdatedDate')"-->
+<!--                      color="accent" inline="true">cancel</mat-icon>-->
+<!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.lastUpdatedDate}}"> {{element?.lastUpdatedDate}}</td>
+      </ng-container>
+      <ng-container matColumnDef="assignedAgentNotes">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header" mat-sort-header>Agent Notes</div>
+<!--          <div class="filter-container">-->
+<!--            <input (input)="filterTasks('assignedAgentNotes', $event)" [(ngModel)]="filters.set('assignedAgentNotes','assignedAgentNotes')" matInput-->
+<!--                   placeholder="Filter">-->
+<!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('assignedAgentNotes')" (click)="clearFilter('assignedAgentNotes')"-->
+<!--                      color="accent" inline="true">cancel</mat-icon>-->
+<!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.assignedAgentNotes}}"> {{element?.assignedAgentNotes}}</td>
+      </ng-container>
+
+<!--      <ng-container matColumnDef="actions">-->
+<!--        <th mat-header-cell *matHeaderCellDef>-->
+<!--          <div class="column-header actions-header">Actions</div>-->
+<!--          <input matInput class="hidden-column-filter" />-->
+<!--        </th>-->
+<!--        <td mat-cell *matCellDef="let element">-->
+
+<!--          <div class="actions-container">-->
+<!--            <button color="primary" mat-icon-button matTooltip="Invoice List" aria-label="Invoice List" (click)="handleClientPackAction('view', element)" [disabled]="element.hasVtInvoices">-->
+<!--              <mat-icon>list</mat-icon>-->
+<!--            </button>-->
+<!--          </div>-->
+
+<!--        </td>-->
+<!--      </ng-container>-->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns;" [ngClass]="{'striped-table': even}"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
+

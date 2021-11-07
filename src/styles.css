@@ -80,12 +80,23 @@ snack-bar-container.mat-snack-bar-container {
 
 /* Works on Chrome/Edge/Safari */
 ::-webkit-scrollbar {
-  width: 2px;
-  height: 8px;
+  width: .7em;
+  height: .6em;
+}
+
+::-webkit-scrollbar:hover {
+  width: 8px;
+  /*height: 8px;*/
 }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 8px;
-  border: 4px solid darkgray;
+  border-radius: 1em;
+  border: .4em solid darkgray;
 }
+::-webkit-scrollbar-thumb:hover {
+  border-radius: 8px;
+  border: 1em solid darkgray;
+}
+
+
 

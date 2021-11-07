@@ -23,6 +23,7 @@ import {TaskDialogComponent} from "./dialogs/task-dialog/task-dialog.component";
 import {BoardDialogComponent} from "./dialogs/board-dialog/board-dialog.component";
 import {LoginComponent} from './components/login/login.component';
 import {AuthGuardModule} from "@angular/fire/auth-guard";
+import { TaskOverviewComponent } from './components/task-overview/task-overview.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {AuthGuardModule} from "@angular/fire/auth-guard";
     AdminConsoleComponent,
     ConfirmationDialogComponent,
     PopupComponent,
-    LoginComponent
+    LoginComponent,
+    TaskOverviewComponent
   ],
   imports: [
     BrowserModule,

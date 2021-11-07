@@ -15,6 +15,8 @@ export interface ProspectiveClient {
   assignedAgentName?: string;
   assignedAgentNotes?: string;
   nextMeetingDate?: Date;
+  createdDate: Date;
+  lastUpdatedDate: Date;
   history?: NotesHistory[];
   statusColor?: 'lightsalmon' | 'lightgreen' | 'lightcoral';
 }
