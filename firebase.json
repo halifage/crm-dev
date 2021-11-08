@@ -5,14 +5,6 @@
   },
   "hosting": [
     {
-      "public": "public",
-      "ignore": [
-        "firebase.json",
-        "**/.*",
-        "**/node_modules/**"
-      ]
-    },
-    {
       "target": "crm-dev",
       "public": "dist/crm-dev",
       "ignore": [

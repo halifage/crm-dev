@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Board} from "../../model/board";
 import {BoardService} from "../../services/board.service";
 import {MatDialog} from "@angular/material/dialog";
@@ -8,6 +8,7 @@ import {BoardDialogComponent} from "../../dialogs/board-dialog/board-dialog.comp
 import {PopupType} from "../../enum/popup-type";
 import {PopupService} from "../../services/popup.service";
 import {FirebaseService} from "../../services/firebase.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-admin-console',
@@ -15,26 +16,29 @@ import {FirebaseService} from "../../services/firebase.service";
   styleUrls: ['./admin-console.component.css'],
 
 })
-export class AdminConsoleComponent implements OnInit {
+export class AdminConsoleComponent implements OnInit, OnDestroy {
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe())
+  }
 
 
+  subscriptions: Subscription[] = []
   boards: Board[] = [];
-  boardTitles: string[] = [];
   addUserForm = new FormGroup({
     email: new FormControl(null, [Validators.email, Validators.required]),
     password: new FormControl(null, Validators.required)
   });
 
-  constructor(private boardService: BoardService, private dialog: MatDialog, private toaster: PopupService, private firebaseService: FirebaseService) {
-    // connectAuthEmulator(this.firebaseAuth, 'http://localhost:9099');
+  constructor(private dialog: MatDialog, private toaster: PopupService, private firebaseService: FirebaseService) {
   }
 
   ngOnInit(): void {
-    // this.boardService.getBoards().data.subscribe(boards => this.boards = boards)
-    this.firebaseService.getBoards().subscribe(boards => {
+    const boardsSubscription = this.firebaseService.getBoards().subscribe(boards => {
       this.boards = boards
-    console.log('admin: boards: ', this.boards)
+      console.log('admin: boards: ', this.boards)
     });
+
+    this.subscriptions.push(boardsSubscription)
 
   }
 
@@ -66,8 +70,10 @@ export class AdminConsoleComponent implements OnInit {
   }
 
   deleteBoard(event: Board) {
-    this.firebaseService.deleteBoard(event).then(() => console.log('board deleted: ', event))
-    this.boards.splice(this.boards.indexOf(event), 1);
+    this.firebaseService.deleteBoard(event).then(() => {
+      console.log('board deleted: ', event, 'boards: ', this.boards)
+      this.boards.splice(this.boards.indexOf(event),1)
+    })
   }
 
   createUser() {

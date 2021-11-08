@@ -3,6 +3,7 @@
   /*justify-content: flex-start;*/
   width: 100%;
   height: 93%;
+  overflow: auto;
 }
 
 .fields {
@@ -46,4 +47,8 @@ h1 {
 .agent-notes {
   padding-top: 1em;
   width: 95%;
+}
+
+.save-task {
+  padding: 1em;
 }

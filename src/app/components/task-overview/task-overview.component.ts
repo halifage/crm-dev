@@ -3,6 +3,9 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
 import {PopupService} from "../../services/popup.service";
 import {ProspectiveClient} from "../../model/prospective-client";
+import {FirebaseService} from "../../services/firebase.service";
+import firebase from "firebase/compat";
+import Timestamp = firebase.firestore.Timestamp;
 
 @Component({
   selector: 'app-task-overview',
@@ -27,12 +30,24 @@ export class TaskOverviewComponent implements OnInit {
   dataSource = new MatTableDataSource<ProspectiveClient>();
   tasks: ProspectiveClient[] = []
 
-  constructor(private toaster: PopupService) {
+  constructor(private toaster: PopupService, private firebaseService: FirebaseService) {
   }
 
   ngOnInit() {
-    this.setTableData(this.tasks)
+    this.firebaseService.getTasks().subscribe(tasks => {
+      console.log('Overview: tasks: ', tasks)
+      this.tasks = tasks
+      this.setTableData(this.tasks)
+    })
   }
+
+  // convertDate(tasks: ProspectiveClient[]) {
+  //   tasks.forEach(task => {
+  //     const = task.lastUpdatedDate.toDate()
+  //     task.lastUpdatedDate = new Date(task.lastUpdatedDate)
+  //   } )
+  //   return new Date()
+  // }
 
   setTableData(tasks: ProspectiveClient[]) {
     this.dataSource.data = tasks;

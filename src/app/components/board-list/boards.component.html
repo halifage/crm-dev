@@ -1,11 +1,15 @@
 <div class="new-board-button">
-  <button mat-raised-button color="primary" (click)="openBoardDialog()">
-    <mat-icon>add</mat-icon>
-    Add Board
-  </button>
+<!--  <button mat-raised-button color="primary" (click)="openBoardDialog()">-->
+<!--    <mat-icon>add</mat-icon>-->
+<!--    Add Board-->
+<!--  </button>-->
+  <mat-form-field>
+    <input matInput #filterString (keyup.enter)="filterBoards(filterString.value)">
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
 </div>
 <div class="boards-container">
-  <div *ngFor="let board of boards" class="board">
+  <div *ngFor="let board of displayedBoards" class="board">
     <mat-card
       cdkDropList
       id="{{board?.title}}"
@@ -15,11 +19,11 @@
       <mat-card-title>{{board?.title}}
         <button mat-raised-button color="primary" (click)="addTask(board.title)">
           <mat-icon>add</mat-icon>
-          Add Task
+          Add
         </button>
-        <button mat-icon-button (click)="deleteBoard(board)" matTooltip="Delete column">
-          <mat-icon color="warn" id="delete-board">close</mat-icon>
-        </button>
+<!--        <button mat-icon-button matTooltip="Delete column">-->
+<!--          <mat-icon color="warn" id="delete-board">close</mat-icon>-->
+<!--        </button>-->
       </mat-card-title>
       <mat-card-content>
         <app-task *ngFor="let task of board?.tasks" [task]="task"></app-task>

@@ -1,5 +1,11 @@
 <div class="task-view-container">
   <div class="fields">
+    <div class="save-task">
+      <button mat-raised-button color="primary" (click)="saveTask()">
+        <mat-icon>save</mat-icon>
+        save
+      </button>
+    </div>
     <div>
       <h1>{{taskForm.get('companyName')?.value}}</h1>
       <form [formGroup]="taskForm">
@@ -21,7 +27,7 @@
           <div class="flex-justify-sa">
             <mat-form-field id="company-address">
               <mat-label>Company Address</mat-label>
-              <input matInput formArrayName="companyAddress">
+              <input matInput formControlName="companyAddress">
               <mat-error *ngIf="taskForm.get('companyAddress')?.errors">This field is required</mat-error>
             </mat-form-field>
           </div>
@@ -41,30 +47,30 @@
           <div class="flex-justify-sa">
             <mat-form-field>
               <mat-label>Contact Person</mat-label>
-              <input matInput formControlName="contactName">
+              <input matInput formControlName="contactPersonAtCompany">
               <mat-hint>Name of contact person</mat-hint>
             </mat-form-field>
             <mat-form-field>
               <mat-label>Role</mat-label>
-              <input matInput formControlName="contactRole">
+              <input matInput formControlName="contactPersonRole">
               <mat-hint>Role / position of contact person in the company</mat-hint>
             </mat-form-field>
           </div>
           <div class="flex-justify-sa">
             <mat-form-field>
               <mat-label>Phone</mat-label>
-              <input matInput formControlName="contactPhone">
+              <input matInput formControlName="contactPersonPhone">
             </mat-form-field>
             <mat-form-field>
               <mat-label>Email</mat-label>
-              <input matInput formControlName="contactEmail">
-              <mat-error *ngIf="taskForm.get('contactEmail')?.errors">Invalid email format</mat-error>
+              <input matInput formControlName="contactPersonEmail">
+              <mat-error *ngIf="taskForm.get('contactPersonEmail')?.errors">Invalid email format</mat-error>
             </mat-form-field>
           </div>
           <div class="flex-justify-sa">
             <mat-form-field>
               <mat-label>Decision Maker</mat-label>
-              <input matInput formControlName="decisionMakerName">
+              <input matInput formControlName="decisionMakerAtCompany">
               <mat-hint>Name of decider</mat-hint>
             </mat-form-field>
           </div>
@@ -85,12 +91,12 @@
           <div class="flex-justify-sa">
             <mat-form-field>
               <mat-label>Agent Assigned</mat-label>
-              <input matInput formControlName="assignee">
+              <input matInput formControlName="assignedAgentName">
               <mat-hint>Name of Agent</mat-hint>
             </mat-form-field>
             <mat-form-field>
               <mat-label>Next Meeting Date</mat-label>
-              <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+              <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="nextMeetingDate">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
@@ -98,7 +104,7 @@
           <div class="flex-justify-sa">
             <mat-form-field class="agent-notes">
               <mat-label>Agent Notes</mat-label>
-              <textarea matInput formControlName="agentNotes"></textarea>
+              <textarea matInput formControlName="assignedAgentNotes"></textarea>
             </mat-form-field>
           </div>
         </div>
@@ -112,7 +118,7 @@
       <mat-list-item *ngFor="let note of notesHistory">
         <h3 matLine> {{note.agentName}} </h3>
         <p matLine>
-          <span> {{note.date | date:'dd/MM/yyyy'}} </span>
+          <span> {{note.date}} </span>
           <span class="demo-2"> -- {{note.text}} </span>
         </p>
       </mat-list-item>

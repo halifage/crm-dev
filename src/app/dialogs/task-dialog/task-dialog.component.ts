@@ -6,8 +6,9 @@ import {NotesHistory} from "../../model/notes-history";
 import {MatTableDataSource} from "@angular/material/table";
 
 export interface TaskDialogData {
-  task: Partial<ProspectiveClient>;
-  enableDelete: boolean;
+  task?: ProspectiveClient;
+  column?: string;
+  enableDelete?: boolean;
 }
 
 export interface TaskDialogResult {
@@ -21,24 +22,22 @@ export interface TaskDialogResult {
   styleUrls: ['./task-dialog.component.css']
 })
 export class TaskDialogComponent implements OnInit {
-  private backupTask: Partial<ProspectiveClient> = {...this.data.task};
-
   notesHistory: NotesHistory[] = [];
-
+  boardTitle = this.data.column;
   taskForm = this.fb.group({
-    companyName: new FormControl(null, Validators.required),
-    companyAddress: new FormControl(null, Validators.required),
-    companyIndustry: new FormControl(null, Validators.required),
-    contactEmail: new FormControl(null, Validators.email),
-    contactPhone: new FormControl(null),
-    contactRole: new FormControl(null),
-    companyType: new FormControl(null),
-    contactName: new FormControl(null),
-    decisionMakerName: new FormControl(null),
-    decisionMakerPhone: new FormControl(null),
-    decisionMakerEmail: new FormControl(null, Validators.email),
-    assignee: new FormControl(null),
-    agentNotes: new FormControl(null),
+    companyName: new FormControl(),
+    companyAddress: new FormControl(),
+    companyIndustry: new FormControl(),
+    contactPersonEmail: new FormControl(),
+    contactPersonPhone: new FormControl(),
+    contactPersonRole: new FormControl(),
+    companyType: new FormControl(),
+    contactPersonAtCompany: new FormControl(),
+    decisionMakerAtCompany: new FormControl(),
+    decisionMakerPhone: new FormControl(),
+    decisionMakerEmail: new FormControl(),
+    assignedAgentName: new FormControl(),
+    assignedAgentNotes: new FormControl(),
   });
 
   notesHistoryDataSource = new MatTableDataSource<NotesHistory>();
@@ -53,25 +52,39 @@ export class TaskDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.notesHistory.push({
-        date: new Date(),
-        text: "notes for history",
-        agentName: "halifage"
-      },
-      {
-        date: new Date(),
-        text: "notes for history 2",
-        agentName: "halifax"
-      });
+    if (this.data.task) {
+      this.populateTaskFields(this.data.task)
+    }
+  }
 
-    this.notesHistoryDataSource.data = this.notesHistory;
+  populateTaskFields(task: ProspectiveClient) {
+    this.taskForm.setValue({
+      companyName: this.data.task?.companyName,
+      companyAddress: this.data.task?.companyAddress,
+      companyIndustry: this.data.task?.companyIndustry,
+      contactPersonEmail: this.data.task?.contactPersonEmail,
+      contactPersonPhone: this.data.task?.contactPersonPhone,
+      contactPersonRole: this.data.task?.contactPersonRole,
+      companyType: this.data.task?.companyType,
+      contactPersonAtCompany: this.data.task?.contactPersonAtCompany,
+      decisionMakerAtCompany: this.data.task?.decisionMakerAtCompany,
+      decisionMakerPhone: this.data.task?.decisionMakerPhone,
+      decisionMakerEmail: this.data.task?.decisionMakerEmail,
+      assignedAgentName: this.data.task?.assignedAgentName,
+      assignedAgentNotes: this.data.task?.assignedAgentNotes
+    })
   }
 
   cancel(): void {
-    // this.data.task.title = this.backupTask.title;
-    // this.data.task.description = this.backupTask.description;
     this.dialogRef.close(this.data);
   }
 
 
+  submitTask() {
+    const dialogResult: TaskDialogData = {
+      ...this.data,
+      task: this.taskForm.value
+    }
+    this.dialogRef.close(dialogResult)
+  }
 }

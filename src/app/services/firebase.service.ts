@@ -25,8 +25,8 @@ export class FirebaseService {
   currentAuthenticatedUserObservable = this.currentAuthenticatedUser as Observable<User>
   boards = new BehaviorSubject<Board[]>([]);
   boardsObservable = this.boards as Observable<Board[]>
-  tasks = new BehaviorSubject<Task[]>([]);
-  tasksObservable = this.tasks as Observable<Task[]>
+  tasks = new BehaviorSubject<ProspectiveClient[]>([]);
+  tasksObservable = this.tasks as Observable<ProspectiveClient[]>
   subscriptions: Unsubscribe[] = [];
 
   constructor(private firebaseAuth: Auth, private firestoreDb: Firestore) {
@@ -40,16 +40,17 @@ export class FirebaseService {
     });
 
     const tasksUnsubscribe = onSnapshot(collection(this.firestoreDb, 'tasks'), snapshot => {
-      let tasks: Task[] = []
+      let tasks: ProspectiveClient[] = []
       snapshot.forEach(doc => {
-        tasks.push(<Task>doc.data())
+        // console.log('Service: tasks: ', tasks)
+        tasks.push(<ProspectiveClient>doc.data())
       })
       this.tasks.next(tasks)
     })
 
     const boardsUnsubscribe = onSnapshot(collection(this.firestoreDb, 'boards'), (snapshot) => {
       let boardsList: Board[] = []
-      console.log('App Component: boards snapshot: ', snapshot)
+      // console.log('App Component: boards snapshot: ', snapshot)
       snapshot.forEach(doc => {
         boardsList.push(<Board>doc.data())
         this.boards.next(boardsList)
@@ -68,7 +69,7 @@ export class FirebaseService {
   }
 
   setBoards(boards: Board[]) {
-    console.log('Service: setBoards: ', boards)
+    // console.log('Service: setBoards: ', boards)
     this.boards.next(boards)
   }
 
@@ -76,20 +77,22 @@ export class FirebaseService {
     return this.boardsObservable
   }
 
-  setTasks(tasks: Task[]) {
-    this.tasks.next(tasks)
-  }
-
-  getTasks(): Observable<Task[]> {
+  getTasks(): Observable<ProspectiveClient[]> {
     return this.tasksObservable
   }
 
   async createBoard(board: Board): Promise<Board> {
-    return await this.updateBoard(board)
+    const docRef = doc(collection(this.firestoreDb, 'boards'))
+    await setDoc(docRef, Object.assign({}, {...board, id: docRef.id}), {merge: true})
+      .then(() => {
+        board.id = docRef.id
+      })
+
+    return board
   }
 
   async updateBoard(board: Board): Promise<Board> {
-    const docRef = doc(collection(this.firestoreDb, 'boards'))
+    const docRef = doc(collection(this.firestoreDb, 'boards'), board.id)
     await setDoc(docRef, Object.assign({}, {...board, id: docRef.id}), {merge: true})
       .then(() => {
         board.id = docRef.id
@@ -105,15 +108,25 @@ export class FirebaseService {
   }
 
   async createTask(task: ProspectiveClient): Promise<ProspectiveClient> {
-    return await this.updateTask(task)
+    const docRef = doc(collection(this.firestoreDb, 'tasks'))
+    const currentUser = this.currentAuthenticatedUser.value
+    await setDoc(docRef, Object.assign({}, {...task, id: docRef.id}), {merge: true})
+      .then()
+
+    return task
   }
 
   async updateTask(task: ProspectiveClient): Promise<ProspectiveClient> {
-    const docRef = doc(collection(this.firestoreDb, 'tasks'))
+    const docRef = doc(collection(this.firestoreDb, 'tasks'), task.id)
+    const currentUser = this.currentAuthenticatedUser.value
     await setDoc(docRef, Object.assign({}, {...task, id: docRef.id}), {merge: true})
-      .then(() => task.id = docRef.id)
+      .then()
 
     return task
+  }
+
+  deleteFromCollection(task: ProspectiveClient): void {
+    const docRef = doc(collection(this.firestoreDb, 'tasks'))
   }
 
 

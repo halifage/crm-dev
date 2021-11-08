@@ -19,5 +19,10 @@ export class TaskComponent implements OnInit {
   }
 
   editTask(task: ProspectiveClient | null) {
+    this.router.navigateByUrl('/task-edit', {
+      state: {
+        task: task
+      }
+    })
   }
 }

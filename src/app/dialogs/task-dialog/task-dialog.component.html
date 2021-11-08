@@ -1,6 +1,6 @@
 <div>
   <h1>{{taskForm.get('companyName')?.value}}</h1>
-  <form [formGroup]="taskForm">
+  <form [formGroup]="taskForm" (ngSubmit)="submitTask()">
     <div class="flex-justify-sb">
       <mat-form-field>
         <mat-label>Company Name</mat-label>
@@ -16,7 +16,7 @@
     </div>
     <mat-form-field id="company-address">
       <mat-label>Company Address</mat-label>
-      <input matInput formArrayName="companyAddress">
+      <input matInput formControlName="companyAddress">
       <mat-error *ngIf="taskForm.get('companyAddress')?.errors">This field is required</mat-error>
     </mat-form-field>
     <div id="panel-expansion">
@@ -35,19 +35,19 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Contact Person</mat-label>
-            <input matInput formControlName="contactName">
+            <input matInput formControlName="contactPersonAtCompany">
             <mat-hint>Name of contact person</mat-hint>
           </mat-form-field>
         </div>
         <div class="flex-justify-sb">
           <mat-form-field>
             <mat-label>Role</mat-label>
-            <input matInput formControlName="contactRole">
+            <input matInput formControlName="contactPersonRole">
             <mat-hint>Role / position of contact person in the company</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Phone</mat-label>
-            <input matInput formControlName="contactPhone">
+            <input matInput formControlName="contactPersonPhone">
           </mat-form-field>
         </div>
         <div class="flex-justify-sb">
@@ -58,7 +58,7 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Decision Maker</mat-label>
-            <input matInput formControlName="decisionMakerName">
+            <input matInput formControlName="decisionMakerAtCompany">
             <mat-hint>Name of decider</mat-hint>
           </mat-form-field>
         </div>
@@ -76,19 +76,19 @@
         <div class="flex-justify-sb">
           <mat-form-field>
             <mat-label>Agent Assigned</mat-label>
-            <input matInput formControlName="assignee">
+            <input matInput formControlName="assignedAgentName">
             <mat-hint>Name of Agent</mat-hint>
           </mat-form-field>
           <mat-form-field>
             <mat-label>Agent Notes</mat-label>
-            <textarea matInput formControlName="agentNotes"></textarea>
+            <textarea matInput formControlName="assignedAgentNotes"></textarea>
           </mat-form-field>
         </div>
       </mat-expansion-panel>
     </div>
+    <div mat-dialog-actions class="flex-justify-center">
+      <button mat-raised-button color="accent" (click)="cancel()">Cancel</button>
+      <button mat-raised-button type="submit" color="primary" [disabled]="taskForm.invalid">OK</button>
+    </div>
   </form>
-</div>
-<div mat-dialog-actions class="flex-justify-center">
-  <button mat-raised-button color="accent" (click)="cancel()">Cancel</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="taskForm.value">OK</button>
 </div>

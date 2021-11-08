@@ -2,9 +2,11 @@ import {NotesHistory} from "./notes-history";
 
 export interface ProspectiveClient {
   id?: string;
+  userId?:string;
   companyName: string;
   companyAddress: string;
   companyIndustry: string;
+  companyType?: string;
   contactPersonAtCompany?: string;
   contactPersonRole?: string;
   contactPersonEmail?: string;
@@ -15,8 +17,9 @@ export interface ProspectiveClient {
   assignedAgentName?: string;
   assignedAgentNotes?: string;
   nextMeetingDate?: Date;
-  createdDate: Date;
-  lastUpdatedDate: Date;
+  createdDate?: Date;
   history?: NotesHistory[];
+  lastUpdatedDate?: Date;
+  currentColumn?: string;
   statusColor?: 'lightsalmon' | 'lightgreen' | 'lightcoral';
 }

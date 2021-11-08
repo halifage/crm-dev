@@ -13,7 +13,7 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
 
 const routes: Routes = [
   {
-    path: 'board',
+    path: 'boards',
     component: BoardsComponent,
     canActivate: [AuthGuard], data: {authGuardPipe: redirectUnauthorizedToLogin}
   },
