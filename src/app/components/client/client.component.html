@@ -19,7 +19,7 @@
         </mat-autocomplete>
       </mat-form-field>
       <div class="add-client-button" *ngIf="selectedClient == null && clientInputControl.value?.length > 0">
-        <button mat-raised-button color="primary">Add New<mat-icon>add</mat-icon></button>
+        <button mat-raised-button color="primary" (click)="addClient()">Add New<mat-icon>add</mat-icon></button>
       </div>
     </mat-card>
   </div>

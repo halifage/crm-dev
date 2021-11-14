@@ -1,0 +1,72 @@
+<mat-card class="dialog-fields-card">
+  <form [formGroup]="clientForm">
+    <mat-card-title>Client Info</mat-card-title>
+    <div mat-card-content class="dialog-fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Company Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option [value]="'Category A'">Category A</mat-option>
+          <mat-option [value]="'Category B'">Category B</mat-option>
+          <mat-option [value]="'Category C'">Category C</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Sector of Activity</mat-label>
+        <input matInput formControlName="industry">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Projected Business Volumes</mat-label>
+        <input matInput formControlName="annualVolumes">
+      </mat-form-field>
+    </div>
+    <div mat-card-content class="dialog-fields">
+      <mat-form-field appearance="outline" id="address">
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="address">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Phone</mat-label>
+        <input matInput formControlName="phone">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Payment Mode</mat-label>
+        <mat-select formControlName="paymentMode">
+          <mat-option [value]="'Cash'">Cash</mat-option>
+          <mat-option [value]="'Cheque'">Cheque</mat-option>
+          <mat-option [value]="'Account'">Account</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-card-title>Contact Person</mat-card-title>
+    <div mat-card-content class="dialog-fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Person Name</mat-label>
+        <input matInput formControlName="contactPersonName">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Person Role</mat-label>
+        <input matInput formControlName="contactPersonRole">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Person Email</mat-label>
+        <input matInput formControlName="contactPersonEmail">
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Person Phone</mat-label>
+        <input matInput formControlName="contactPersonPhone">
+      </mat-form-field>
+    </div>
+  </form>
+</mat-card>
+<mat-dialog-actions>
+  <button mat-button color="accent">Cancel</button>
+  <button mat-raised-button color="primary">Save</button>
+</mat-dialog-actions>

@@ -4,6 +4,9 @@ import {FormBuilder, FormControl, Validators} from "@angular/forms";
 import {map, startWith} from "rxjs/operators";
 import {Observable} from "rxjs";
 import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
+import {MatDialog} from "@angular/material/dialog";
+import {BoardDialogComponent} from "../../dialogs/board-dialog/board-dialog.component";
+import {AddClientComponent} from "../../dialogs/add-client/add-client.component";
 
 @Component({
   selector: 'app-client-component',
@@ -31,7 +34,7 @@ export class ClientComponent implements OnInit {
     contactPersonRole: new FormControl(null)
   })
 
-  constructor() {
+  constructor(private dialog: MatDialog,) {
   }
 
   ngOnInit(): void {
@@ -108,5 +111,25 @@ export class ClientComponent implements OnInit {
   clearSearch(searchBox: HTMLInputElement) {
     this.selectedClient = null
     searchBox.value = ''
+  }
+
+  addClient() {
+    const dialogRef = this.dialog.open(AddClientComponent, {
+      width: "50em",
+      height: "50em",
+      data: {}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      // if (result) {
+      //   this.firebaseService.createBoard({
+      //     title: result,
+      //     tasks: []
+      //   }).then((board) => {
+      //     this.toaster.show('Column created successfully :)')
+      //     console.log('Created board: ', board)
+      //   })
+      // }
+    });
   }
 }

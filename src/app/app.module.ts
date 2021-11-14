@@ -26,6 +26,7 @@ import {AuthGuardModule} from "@angular/fire/auth-guard";
 import { TaskOverviewComponent } from './components/task-overview/task-overview.component';
 import { ClientComponent } from './components/client/client.component';
 import {FilteredSelectComponent} from "./shared/filtered-select/filtered-select.component";
+import { AddClientComponent } from './dialogs/add-client/add-client.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import {FilteredSelectComponent} from "./shared/filtered-select/filtered-select.
     LoginComponent,
     TaskOverviewComponent,
     ClientComponent,
-    FilteredSelectComponent
+    FilteredSelectComponent,
+    AddClientComponent
   ],
   imports: [
     BrowserModule,

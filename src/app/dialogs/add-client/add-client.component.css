@@ -1,0 +1,38 @@
+::ng-deep .mat-dialog-container {
+  background-color: whitesmoke;
+}
+
+mat-form-field {
+  width: 24%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.dialog-fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 30%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input.mat-input-element {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+#address #search-box{
+  width: 45%;
+}
+
+mat-dialog-actions {
+  display: flex;
+  justify-content: center;
+}
