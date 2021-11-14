@@ -1,0 +1,83 @@
+<div class="client-container">
+  <!--  <filtered-select [appearance]="'outline'" [sourceList]="clients" [label]="'Search Clients'"-->
+  <!--                   [propertyToFilterBy]="'name'" [propertyToDisplay]="'name'" [compareWith]="compareSelectFields"-->
+  <!--                   (onItemSelected)="handleSelection($event)">-->
+  <!--  </filtered-select>-->
+  <div class="search-wrapper">
+    <mat-form-field appearance="fill">
+      <mat-label>Search</mat-label>
+      <input type="text"
+             aria-label="client"
+             matInput
+             [formControl]="clientInputControl"
+             [matAutocomplete]="auto">
+      <mat-icon matSuffix>search</mat-icon>
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction" (optionSelected)="handleSelectedClient($event.option.value)">
+        <mat-option *ngFor="let option of filteredClients | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="client-info">
+    <mat-card class="fields-card">
+      <form [formGroup]="clientForm">
+        <mat-card-title>Client Info</mat-card-title>
+        <div mat-card-content class="fields">
+          <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Company Type</mat-label>
+            <input matInput formControlName="type">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Sector of Activity</mat-label>
+            <input matInput formControlName="industry">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Projected Business Volumes</mat-label>
+            <input matInput formControlName="annualVolumes">
+          </mat-form-field>
+        </div>
+        <div mat-card-content class="fields">
+          <mat-form-field appearance="fill" id="address">
+            <mat-label>Address</mat-label>
+            <input matInput formControlName="address">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+          </mat-form-field>
+        </div>
+        <mat-card-title>Contact Person</mat-card-title>
+        <div mat-card-content class="fields">
+          <mat-form-field appearance="fill">
+            <mat-label>Contact Person Name</mat-label>
+            <input matInput formControlName="contactPersonName">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Contact Person Role</mat-label>
+            <input matInput formControlName="contactPersonRole">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Contact Person Email</mat-label>
+            <input matInput formControlName="contactPersonEmail">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Contact Person Phone</mat-label>
+            <input matInput formControlName="contactPersonPhone">
+          </mat-form-field>
+        </div>
+      </form>
+    </mat-card>
+
+  </div>
+
+
+</div>

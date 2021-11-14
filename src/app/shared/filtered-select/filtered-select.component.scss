@@ -1,0 +1,15 @@
+
+#selectFilter.select-search {
+  background-color: white !important;
+  line-height: 1em !important;
+  padding: 15px !important;
+  color: black;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  box-sizing: border-box;
+}
+
+mat-form-field {
+  width: 100%;
+}

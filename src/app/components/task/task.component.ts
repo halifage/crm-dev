@@ -23,6 +23,6 @@ export class TaskComponent implements OnInit {
       state: {
         task: task
       }
-    })
+    }).then()
   }
 }

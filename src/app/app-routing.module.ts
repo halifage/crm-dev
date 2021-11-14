@@ -7,6 +7,7 @@ import {AdminConsoleComponent} from "./components/admin-console/admin-console.co
 import {LoginComponent} from "./components/login/login.component";
 import {redirectUnauthorizedTo, AuthGuard, redirectLoggedInTo} from "@angular/fire/auth-guard";
 import {TaskOverviewComponent} from "./components/task-overview/task-overview.component";
+import {ClientComponent} from "./components/client/client.component";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToHome = () => redirectLoggedInTo(['home']);
@@ -42,7 +43,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent,
+    component: ClientComponent,
   }
 ];
 

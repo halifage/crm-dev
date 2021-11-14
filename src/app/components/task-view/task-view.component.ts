@@ -38,24 +38,27 @@ export class TaskViewComponent implements OnInit {
     statusColor: new FormControl(null),
     userId: new FormControl(null)
   });
-  private currentUser: User | null = null;
+  currentUser: User | null = null;
+  task: ProspectiveClient | null = null;
 
   constructor(private fb: FormBuilder, private firebaseService: FirebaseService, private router: Router) {
     console.log('task edit: ', history.state.task)
   }
 
   ngOnInit(): void {
-    const task: ProspectiveClient = history.state.task
-    this.notesHistory = task.history
+    this.task = history.state.task
+    this.notesHistory = this.task?.history
     this.notesHistory?.forEach(note => {
       const noteDate = note.date
-      if(noteDate instanceof Timestamp) {
+      if (noteDate instanceof Timestamp) {
         console.log('date is instance of Timestamp')
         note.date = noteDate.toDate()
       }
     })
 
-    this.populateTaskFields(task)
+    if (this.task != null) {
+      this.populateTaskFields(this.task)
+    }
     this.firebaseService.getCurrentAuthenticatedUser().subscribe(user => this.currentUser = user)
   }
 
@@ -88,26 +91,43 @@ export class TaskViewComponent implements OnInit {
   }
 
   saveTask() {
-    const task: ProspectiveClient = this.taskForm.value
+    const formValue: ProspectiveClient = this.taskForm.value
     let noteHistory: NotesHistory = {}
 
-    noteHistory.date = task.lastUpdatedDate
+    noteHistory.date = formValue.lastUpdatedDate
     noteHistory.text = 'Updated item: '
 
-    if (task.assignedAgentNotes?.length) {
-      noteHistory.text = noteHistory.text.concat('\tNOTE: '.concat(task.assignedAgentNotes))
+    const assignedAgentNotes = formValue.assignedAgentNotes;
+    if (assignedAgentNotes !== undefined && assignedAgentNotes !== this.task?.assignedAgentNotes) {
+      noteHistory.text = noteHistory.text.concat('\tNOTE: '.concat(assignedAgentNotes))
     }
 
-    if (task.nextMeetingDate != null) {
-      const nextMeetingDate = task.nextMeetingDate;
-      noteHistory.text = noteHistory.text.concat('\tNEXT MEETING DATE: '.concat(`${nextMeetingDate.getDay()}/${nextMeetingDate.getMonth()}/${nextMeetingDate.getFullYear()}`))
+    if (formValue.nextMeetingDate != null) {
+      const nextMeetingDate = this.convertDateField(formValue.nextMeetingDate);
+      if (nextMeetingDate != this.convertDateField(this.task?.nextMeetingDate)){
+        console.log(`dates are different: form: ${nextMeetingDate}, task: ${this.task?.nextMeetingDate}` )
+        noteHistory.text = noteHistory.text.concat('\tNEXT MEETING DATE: '.concat(nextMeetingDate?.toDateString() || ''))
+      }
+        // noteHistory.text = noteHistory.text.concat('\tNEXT MEETING DATE: '.concat(`${nextMeetingDate?.getDay()}/${nextMeetingDate?.getMonth()}/${nextMeetingDate?.getFullYear()}`))
     }
     noteHistory.agentName = this.currentUser?.displayName || this.currentUser?.email || ""
     noteHistory.userId = this.currentUser?.uid
-    task.history = task.history || []
-    task.history.push(noteHistory)
-    this.firebaseService.updateTask(task).then((task) => console.log('task updated: ', task));
+    formValue.history = formValue.history || []
+    formValue.history.push(noteHistory)
+    this.firebaseService.updateTask(formValue).then((formValue) => {
+      this.router.navigateByUrl('/boards').then()
+      console.log('formValue updated: ', formValue)
+    });
 
 
   }
+
+  convertDateField(value: Timestamp | Date | undefined): Date | undefined {
+    if (value == null) {
+      return value
+    } else if (value instanceof Timestamp) {
+      return value.toDate()
+    } else return value
+  }
+
 }

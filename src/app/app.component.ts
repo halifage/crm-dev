@@ -31,7 +31,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.router.navigateByUrl('/home').then()
+    // this.router.navigateByUrl('/home').then()
   }
 
   signOut() {

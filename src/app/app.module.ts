@@ -24,6 +24,8 @@ import {BoardDialogComponent} from "./dialogs/board-dialog/board-dialog.componen
 import {LoginComponent} from './components/login/login.component';
 import {AuthGuardModule} from "@angular/fire/auth-guard";
 import { TaskOverviewComponent } from './components/task-overview/task-overview.component';
+import { ClientComponent } from './components/client/client.component';
+import {FilteredSelectComponent} from "./shared/filtered-select/filtered-select.component";
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { TaskOverviewComponent } from './components/task-overview/task-overview.
     ConfirmationDialogComponent,
     PopupComponent,
     LoginComponent,
-    TaskOverviewComponent
+    TaskOverviewComponent,
+    ClientComponent,
+    FilteredSelectComponent
   ],
   imports: [
     BrowserModule,

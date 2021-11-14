@@ -1,0 +1,11 @@
+<mat-form-field [appearance]="formFieldAppearance">
+  <mat-label>{{label}}</mat-label>
+  <mat-select (selectionChange)="handleSelectedItem($event.value)"
+              (openedChange)="handleSelectOptionsOpenedOrClosed($event)"
+              [compareWith]="compareWith ||  compareSelectFields"
+              [formControl]="selectControl" #select>
+    <input matInput class="select-search" (input)="filterList($event.target)" id="selectFilter" #selectFilter>
+    <mat-option *ngFor="let item of filteredList"
+                [value]="item">{{item[propertyToDisplay]}}</mat-option>
+  </mat-select>
+</mat-form-field>
