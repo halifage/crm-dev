@@ -46,8 +46,9 @@ input.mat-input-element {
 
 .actions-card {
   display: flex;
-  justify-content: space-between;
   padding-bottom: 0;
+  height: 80%;
+  justify-content: flex-start;
 }
 
 .no-client-card {
@@ -59,3 +60,11 @@ input.mat-input-element {
   cursor: pointer;
 }
 
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.add-client-button {
+  padding-left: 2em;
+  padding-top: 1em;
+}
