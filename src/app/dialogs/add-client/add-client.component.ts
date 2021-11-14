@@ -1,6 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormBuilder, FormControl} from "@angular/forms";
+import {FormUtil} from "../../util/form-util";
 
 @Component({
   selector: 'app-add-client',
@@ -30,4 +31,7 @@ export class AddClientComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  addClient() {
+    this.dialogRef.close(this.clientForm.value)
+  }
 }

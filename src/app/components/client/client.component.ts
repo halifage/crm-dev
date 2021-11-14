@@ -121,15 +121,13 @@ export class ClientComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // if (result) {
-      //   this.firebaseService.createBoard({
-      //     title: result,
-      //     tasks: []
-      //   }).then((board) => {
-      //     this.toaster.show('Column created successfully :)')
-      //     console.log('Created board: ', board)
-      //   })
-      // }
+      if (result) {
+        console.log('Client captured: ', result)
+        this.populateClientForm(result)
+        this.selectedClient = result
+        // save client
+
+      }
     });
   }
 }

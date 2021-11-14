@@ -67,6 +67,6 @@
   </form>
 </mat-card>
 <mat-dialog-actions>
-  <button mat-button color="accent">Cancel</button>
-  <button mat-raised-button color="primary">Save</button>
+  <button mat-button color="accent" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="addClient()">Save</button>
 </mat-dialog-actions>
