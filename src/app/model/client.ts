@@ -6,7 +6,7 @@ export interface Client {
   type?: string;
   paymentMode?: string;
   industry: string;
-  annualVolumes?: string;
+  annualVolumes?: number;
   phone?: number;
   address?:string;
   email?: string;

@@ -12,6 +12,7 @@ import {MatAutocompleteSelectedEvent} from "@angular/material/autocomplete";
 })
 export class ClientComponent implements OnInit {
   clients: Client[] = [];
+  selectedClient: Client | null = null;
   filteredClients: Observable<Client[]> | undefined;
   clientInputControl = new FormControl();
 
@@ -44,7 +45,16 @@ export class ClientComponent implements OnInit {
     this.clients.push({
         name: 'Client 1',
         address: 'Address of the client',
-        industry: 'Industry of the client'
+        industry: 'Industry of the client',
+        contactPersonRole: 'Manager',
+        contactPersonPhone: 123456789,
+        contactPersonEmail: 'contact@company.com',
+        contactPersonName: 'Contact Name',
+        email: 'info@company.com',
+        phone: 123456789,
+        annualVolumes: 1000,
+        paymentMode: 'Cash',
+        type: 'Category A'
       },
       {
         name: 'Client 2',
@@ -65,18 +75,18 @@ export class ClientComponent implements OnInit {
 
   private populateClientForm(client: Client) {
     this.clientForm.setValue({
-      name: client.name,
-      type: client.type,
-      paymentMode: client.paymentMode,
-      industry: client.industry,
-      annualVolumes: client.annualVolumes,
-      phone: client.phone,
-      address: client.address,
-      email: client.email,
-      contactPersonName: client.contactPersonName,
-      contactPersonEmail: client.contactPersonEmail,
-      contactPersonPhone: client.contactPersonPhone,
-      contactPersonRole: client.contactPersonRole,
+      name: client.name || null,
+      type: client.type || null,
+      paymentMode: client.paymentMode || null,
+      industry: client.industry || null,
+      annualVolumes: client.annualVolumes || null,
+      phone: client.phone || null,
+      address: client.address || null,
+      email: client.email || null,
+      contactPersonName: client.contactPersonName || null,
+      contactPersonEmail: client.contactPersonEmail || null,
+      contactPersonPhone: client.contactPersonPhone || null,
+      contactPersonRole: client.contactPersonRole || null,
     })
   }
 
@@ -86,10 +96,17 @@ export class ClientComponent implements OnInit {
   }
 
   displayFunction(client: Client): string {
-    return client && client.name ? client.name : "";
+    return client && client.name ? client.name : ""
   }
 
   handleSelectedClient(selectedClient: Client) {
     console.log('selected client: ', selectedClient)
+    this.selectedClient = selectedClient
+    this.populateClientForm(selectedClient)
+  }
+
+  clearSearch(searchBox: HTMLInputElement) {
+    this.selectedClient = null
+    searchBox.value = ''
   }
 }

@@ -6,7 +6,7 @@
 }
 
 .search-wrapper {
-  padding: 1em 0 0 1em;
+  padding: 1em 1em 0 1em;
 }
 
 .client-info {
@@ -21,7 +21,6 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  align-content: space-around;
 }
 
 mat-form-field {
@@ -38,10 +37,25 @@ input.mat-input-element {
 }
 
 .fields-card {
-  height: 40%;
+  height: 45%;
 }
 
-#address {
-  width: 49%;
+#address #search-box{
+  width: 30%;
+}
+
+.actions-card {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 0;
+}
+
+.no-client-card {
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .mat-form-field-suffix {
+  cursor: pointer;
 }
 
