@@ -1,0 +1,63 @@
+<div class="client-info">
+  <mat-card class="fields-card" *ngIf="client != null">
+    <form [formGroup]="clientForm">
+      <mat-card-title>Client Info</mat-card-title>
+      <div mat-card-content class="fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Name</mat-label>
+          <input matInput formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Company Type</mat-label>
+          <input matInput formControlName="type">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Sector of Activity</mat-label>
+          <input matInput formControlName="industry">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Projected Business Volumes</mat-label>
+          <input matInput formControlName="annualVolumes">
+        </mat-form-field>
+      </div>
+      <div mat-card-content class="fields">
+        <mat-form-field appearance="outline" id="address">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Phone</mat-label>
+          <input matInput formControlName="phone">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Payment Mode</mat-label>
+          <input matInput formControlName="paymentMode">
+        </mat-form-field>
+      </div>
+      <mat-card-title>Contact Person</mat-card-title>
+      <div mat-card-content class="fields">
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Person Name</mat-label>
+          <input matInput formControlName="contactPersonName">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Person Role</mat-label>
+          <input matInput formControlName="contactPersonRole">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Person Email</mat-label>
+          <input matInput formControlName="contactPersonEmail">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contact Person Phone</mat-label>
+          <input matInput formControlName="contactPersonPhone">
+        </mat-form-field>
+      </div>
+    </form>
+  </mat-card>
+
+</div>

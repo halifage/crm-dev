@@ -9,62 +9,32 @@
   padding: 1em 1em 0 1em;
 }
 
-.client-info {
-  padding: 1em;
-  height: 80%;
-  background-color: whitesmoke;
-}
-
-.fields {
-  /*width: 80%;*/
-  /*height: 85%;*/
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-mat-form-field {
-  width: 24%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-input.mat-input-element {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.fields-card {
-  height: 45%;
-}
-
-#address #search-box{
+#search-box{
   width: 30%;
-}
-
-.actions-card {
-  display: flex;
-  padding-bottom: 0;
-  height: 80%;
-  justify-content: flex-start;
-}
-
-.no-client-card {
-  display: flex;
-  justify-content: center;
-}
-
-::ng-deep .mat-form-field-suffix {
-  cursor: pointer;
-}
-
-.mat-form-field-wrapper {
-  padding-bottom: 0;
 }
 
 .add-client-button {
   padding-left: 2em;
   padding-top: 1em;
+}
+
+.actions-card {
+  display: flex;
+  padding-bottom: 0;
+  /*height: 80%;*/
+  justify-content: flex-start;
+}
+
+mat-tab-group {
+  padding: 2em;
+}
+
+mat-tab-header {
+  padding: 1em;
+}
+
+.client-wrapper {
+  padding: 1em;
+  height: 80%;
+  background-color: whitesmoke;
 }

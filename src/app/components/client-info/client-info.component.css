@@ -1,0 +1,57 @@
+.client-info {
+  padding: 1em;
+  height: 80%;
+  background-color: whitesmoke;
+}
+
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 24%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+input.mat-input-element {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fields-card {
+  /*height: 45%;*/
+}
+
+.no-client-card {
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .mat-form-field-suffix {
+  cursor: pointer;
+}
+
+.mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+::ng-deep .mat-form-field-appearance-outline.mat-form-field-disabled .mat-form-field-label {
+  color: forestgreen;
+}
+
+.mat-input-element:disabled {
+  color: black;
+}
+
+::ng-deep .mat-select-disabled .mat-select-value {
+  color: black;
+}
+
+#address {
+  width: 30%;
+}

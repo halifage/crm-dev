@@ -27,6 +27,7 @@ import { TaskOverviewComponent } from './components/task-overview/task-overview.
 import { ClientComponent } from './components/client/client.component';
 import {FilteredSelectComponent} from "./shared/filtered-select/filtered-select.component";
 import { AddClientComponent } from './dialogs/add-client/add-client.component';
+import { ClientInfoComponent } from './components/client-info/client-info.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { AddClientComponent } from './dialogs/add-client/add-client.component';
     TaskOverviewComponent,
     ClientComponent,
     FilteredSelectComponent,
-    AddClientComponent
+    AddClientComponent,
+    ClientInfoComponent
   ],
   imports: [
     BrowserModule,

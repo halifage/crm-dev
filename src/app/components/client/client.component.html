@@ -10,7 +10,9 @@
                [formControl]="clientInputControl"
                [matAutocomplete]="auto">
         <mat-icon id="search" matSuffix *ngIf="selectedClient == null">search</mat-icon>
-        <mat-icon id="clear" matSuffix *ngIf="selectedClient != null" (click)="clearSearch(searchBox)" matTooltip="Clear Selection">close</mat-icon>
+        <mat-icon id="clear" matSuffix *ngIf="selectedClient != null" (click)="clearSearch()"
+                  matTooltip="Clear Selection">close
+        </mat-icon>
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction"
                           (optionSelected)="handleSelectedClient($event.option.value)">
           <mat-option *ngFor="let option of filteredClients | async" [value]="option">
@@ -19,84 +21,91 @@
         </mat-autocomplete>
       </mat-form-field>
       <div class="add-client-button" *ngIf="selectedClient == null && clientInputControl.value?.length > 0">
-        <button mat-raised-button color="primary" (click)="addClient()">Add New<mat-icon>add</mat-icon></button>
+        <button mat-raised-button color="primary" (click)="addClient()">Add New
+          <mat-icon>add</mat-icon>
+        </button>
       </div>
     </mat-card>
   </div>
-  <div class="client-info">
+
+  <div class="client-wrapper">
     <mat-card class="no-client-card" *ngIf="selectedClient == null">
       <mat-card-title>Select a client to view info</mat-card-title>
     </mat-card>
-    <mat-card class="fields-card" *ngIf="selectedClient != null">
-      <form [formGroup]="clientForm">
-        <mat-card-title>Client Info</mat-card-title>
-        <div mat-card-content class="fields">
-          <mat-form-field appearance="outline">
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="name">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Company Type</mat-label>
-            <mat-select formControlName="type">
-              <mat-option [value]="'Category A'">Category A</mat-option>
-              <mat-option [value]="'Category B'">Category B</mat-option>
-              <mat-option [value]="'Category C'">Category C</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Sector of Activity</mat-label>
-            <input matInput formControlName="industry">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Projected Business Volumes</mat-label>
-            <input matInput formControlName="annualVolumes">
-          </mat-form-field>
-        </div>
-        <div mat-card-content class="fields">
-          <mat-form-field appearance="outline" id="address">
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="address">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Phone</mat-label>
-            <input matInput formControlName="phone">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Email</mat-label>
-            <input matInput formControlName="email">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Payment Mode</mat-label>
-            <mat-select formControlName="paymentMode">
-              <mat-option [value]="'Cash'">Cash</mat-option>
-              <mat-option [value]="'Cheque'">Cheque</mat-option>
-              <mat-option [value]="'Account'">Account</mat-option>
-            </mat-select>
-          </mat-form-field>
-        </div>
-        <mat-card-title>Contact Person</mat-card-title>
-        <div mat-card-content class="fields">
-          <mat-form-field appearance="outline">
-            <mat-label>Contact Person Name</mat-label>
-            <input matInput formControlName="contactPersonName">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Contact Person Role</mat-label>
-            <input matInput formControlName="contactPersonRole">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Contact Person Email</mat-label>
-            <input matInput formControlName="contactPersonEmail">
-          </mat-form-field>
-          <mat-form-field appearance="outline">
-            <mat-label>Contact Person Phone</mat-label>
-            <input matInput formControlName="contactPersonPhone">
-          </mat-form-field>
-        </div>
-      </form>
-    </mat-card>
-
+    <mat-tab-group dynamicHeight *ngIf="selectedClient !== null">
+      <mat-tab [label]="selectedClient.name || ''">
+        <app-client-info [client]="selectedClient"></app-client-info>
+      </mat-tab>
+      <mat-tab label="Activities"> Content 2</mat-tab>
+      <mat-tab label="Orders"> Content 3</mat-tab>
+    </mat-tab-group>
   </div>
+  <!--  <div class="client-info">-->
+  <!--    <mat-card class="no-client-card" *ngIf="selectedClient == null">-->
+  <!--      <mat-card-title>Select a client to view info</mat-card-title>-->
+  <!--    </mat-card>-->
+  <!--    <mat-card class="fields-card" *ngIf="selectedClient != null">-->
+  <!--      <form [formGroup]="clientForm">-->
+  <!--        <mat-card-title>Client Info</mat-card-title>-->
+  <!--        <div mat-card-content class="fields">-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Name</mat-label>-->
+  <!--            <input matInput formControlName="name">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Company Type</mat-label>-->
+  <!--            <input matInput formControlName="type">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Sector of Activity</mat-label>-->
+  <!--            <input matInput formControlName="industry">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Projected Business Volumes</mat-label>-->
+  <!--            <input matInput formControlName="annualVolumes">-->
+  <!--          </mat-form-field>-->
+  <!--        </div>-->
+  <!--        <div mat-card-content class="fields">-->
+  <!--          <mat-form-field appearance="outline" id="address">-->
+  <!--            <mat-label>Address</mat-label>-->
+  <!--            <input matInput formControlName="address">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Phone</mat-label>-->
+  <!--            <input matInput formControlName="phone">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Email</mat-label>-->
+  <!--            <input matInput formControlName="email">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Payment Mode</mat-label>-->
+  <!--            <input matInput formControlName="paymentMode">-->
+  <!--          </mat-form-field>-->
+  <!--        </div>-->
+  <!--        <mat-card-title>Contact Person</mat-card-title>-->
+  <!--        <div mat-card-content class="fields">-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Contact Person Name</mat-label>-->
+  <!--            <input matInput formControlName="contactPersonName">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Contact Person Role</mat-label>-->
+  <!--            <input matInput formControlName="contactPersonRole">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Contact Person Email</mat-label>-->
+  <!--            <input matInput formControlName="contactPersonEmail">-->
+  <!--          </mat-form-field>-->
+  <!--          <mat-form-field appearance="outline">-->
+  <!--            <mat-label>Contact Person Phone</mat-label>-->
+  <!--            <input matInput formControlName="contactPersonPhone">-->
+  <!--          </mat-form-field>-->
+  <!--        </div>-->
+  <!--      </form>-->
+  <!--    </mat-card>-->
+
+  <!--  </div>-->
 
 
 </div>
