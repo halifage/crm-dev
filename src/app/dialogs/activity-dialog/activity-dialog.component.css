@@ -16,7 +16,7 @@ mat-form-field {
 }
 
 mat-form-field {
-  width: 30%;
+  width: 45%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -28,8 +28,10 @@ input.mat-input-element {
   white-space: nowrap;
 }
 
-#address #search-box {
-  width: 45%;
+#meeting-report {
+  width: 100%;
+  max-height: 20%;
+  min-height: 20%;
 }
 
 mat-dialog-actions {
@@ -37,14 +39,7 @@ mat-dialog-actions {
   justify-content: center;
 }
 
-/* The below is to hide the arrows on the input number fields  */
-/*Chrome, Safari, Edge, Opera*/
-input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/*Firefox*/
-input[type=number] {
-  -moz-appearance: textfield;
+.dialog-fields-card {
+  height: 80%;
+  overflow-y: scroll;
 }

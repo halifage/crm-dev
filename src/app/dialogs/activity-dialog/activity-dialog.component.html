@@ -1,0 +1,76 @@
+    <mat-card-title>Activity</mat-card-title>
+<mat-card class="dialog-fields-card">
+  <form [formGroup]="activityForm">
+    <div mat-card-content class="dialog-fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title">
+<!--        <mat-error *ngIf="activityForm.get('name')?.invalid">This is a required field</mat-error>-->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option [value]="'New'">New</mat-option>
+          <mat-option [value]="'Pending'">Pending</mat-option>
+          <mat-option [value]="'Done'">Done</mat-option>
+        </mat-select>
+<!--        <mat-error *ngIf="activityForm.get('type')?.errors">This is a required field</mat-error>-->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Agent Name</mat-label>
+        <input matInput formControlName="agentName">
+<!--        <mat-error *ngIf="activityForm.get('industry')?.errors">This is a required field</mat-error>-->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Account Status</mat-label>
+        <input matInput formControlName="accountStatus">
+      </mat-form-field>
+    </div>
+    <div mat-card-content class="dialog-fields">
+      <mat-form-field appearance="outline">
+        <mat-label>Claim</mat-label>
+        <input matInput formControlName="claim">
+<!--        <mat-error *ngIf="activityForm.get('address')?.errors">This is a required field</mat-error>-->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Pending Transaction</mat-label>
+        <input matInput formControlName="pendingTransaction">
+<!--        <mat-error *ngIf="activityForm.get('phone')?.errors">This is a required field</mat-error>-->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Business Prospect</mat-label>
+        <input matInput formControlName="businessProspect">
+<!--        <mat-error *ngIf="activityForm.get('email')?.errors">Invalid email format</mat-error>-->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Next Meeting Date</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="nextMeetingDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div mat-card-content class="dialog-fields">
+      <mat-form-field appearance="outline" id="meeting-report">
+        <mat-label>Meeting Report</mat-label>
+        <textarea matInput formControlName="meetingReport" cdkTextareaAutosize></textarea>
+      </mat-form-field>
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Contact Person Role</mat-label>-->
+<!--        <input matInput formControlName="contactPersonRole">-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Contact Person Email</mat-label>-->
+<!--        <input matInput formControlName="contactPersonEmail">-->
+<!--        <mat-error *ngIf="activityForm.get('contactPersonEmail')?.errors">Invalid email format</mat-error>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field appearance="outline">-->
+<!--        <mat-label>Contact Person Phone</mat-label>-->
+<!--        <input matInput type="text" formControlName="contactPersonPhone" appPhoneInputMask>-->
+<!--      </mat-form-field>-->
+    </div>
+  </form>
+</mat-card>
+<mat-dialog-actions>
+  <button mat-button color="accent" mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" (click)="saveActivity()" [disabled]="activityForm.invalid">Save</button>
+</mat-dialog-actions>

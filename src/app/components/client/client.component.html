@@ -1,17 +1,21 @@
 <div class="client-container">
   <div class="search-wrapper">
     <mat-card class="actions-card">
-      <mat-form-field appearance="outline" id="search-box">
+      <mat-form-field appearance="outline" id="search-box" *ngIf="selectedClient == null">
         <mat-label>Search</mat-label>
         <input type="text"
                aria-label="client"
                matInput
                [formControl]="clientInputControl"
                [matAutocomplete]="auto">
-        <mat-icon id="search" matSuffix *ngIf="selectedClient == null">search</mat-icon>
-        <mat-icon id="clear" matSuffix *ngIf="selectedClient != null" (click)="clearSearch()"
-                  matTooltip="Clear Selection">close
-        </mat-icon>
+        <button mat-icon-button matSuffix *ngIf="selectedClient == null">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-icon-button matSuffix *ngIf="selectedClient != null" (click)="clearSearch()"
+                matTooltip="Clear Selection">
+          <mat-icon>close
+          </mat-icon>
+        </button>
         <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction"
                           (optionSelected)="handleSelectedClient($event.option.value)">
           <mat-option *ngFor="let option of filteredClients | async" [value]="option">
@@ -19,17 +23,58 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-      <div mat-card-title class="selected-client-name" matTooltip="{{selectedClient?.name}}">{{selectedClient?.name}}</div>
+      <div mat-card-title class="selected-client-name" *ngIf="selectedClient != null"
+           matTooltip="{{selectedClient?.name}}">{{selectedClient?.name}}</div>
       <div class="client-action-buttons">
-        <button *ngIf="selectedClient == null" class="client-action-button" mat-raised-button color="primary" (click)="addClient()">New
+        <button *ngIf="selectedClient == null" class="client-action-button" mat-raised-button color="primary"
+                (click)="addClient()">New
           <mat-icon>add</mat-icon>
         </button>
-        <button *ngIf="selectedClient != null" class="client-action-button" mat-raised-button color="primary" (click)="updateClient()">Edit
+        <button *ngIf="selectedClient != null" class="client-action-button" mat-raised-button color="primary"
+                (click)="updateClient()">Edit
           <mat-icon>edit</mat-icon>
         </button>
       </div>
     </mat-card>
   </div>
+<!--  <div class="search-wrapper" *ngIf="selectedClient != null">-->
+<!--    <mat-card class="actions-card">-->
+<!--      <mat-form-field appearance="outline" id="search-box">-->
+<!--        <mat-label>Search</mat-label>-->
+<!--        <input type="text"-->
+<!--               aria-label="client"-->
+<!--               matInput-->
+<!--               [formControl]="clientInputControl"-->
+<!--               [matAutocomplete]="auto">-->
+<!--        <button mat-icon-button matSuffix *ngIf="selectedClient == null">-->
+<!--          <mat-icon>search</mat-icon>-->
+<!--        </button>-->
+<!--        <button mat-icon-button matSuffix *ngIf="selectedClient != null" (click)="clearSearch()"-->
+<!--                matTooltip="Clear Selection">-->
+<!--          <mat-icon>close-->
+<!--          </mat-icon>-->
+<!--        </button>-->
+<!--        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFunction"-->
+<!--                          (optionSelected)="handleSelectedClient($event.option.value)">-->
+<!--          <mat-option *ngFor="let option of filteredClients | async" [value]="option">-->
+<!--            {{option.name}}-->
+<!--          </mat-option>-->
+<!--        </mat-autocomplete>-->
+<!--      </mat-form-field>-->
+<!--      <div mat-card-title class="selected-client-name"-->
+<!--           matTooltip="{{selectedClient?.name}}">{{selectedClient?.name}}</div>-->
+<!--      <div class="client-action-buttons">-->
+<!--        <button *ngIf="selectedClient == null" class="client-action-button" mat-raised-button color="primary"-->
+<!--                (click)="addClient()">New-->
+<!--          <mat-icon>add</mat-icon>-->
+<!--        </button>-->
+<!--        <button *ngIf="selectedClient != null" class="client-action-button" mat-raised-button color="primary"-->
+<!--                (click)="updateClient()">Edit-->
+<!--          <mat-icon>edit</mat-icon>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </mat-card>-->
+<!--  </div>-->
 
   <div class="client-wrapper">
     <mat-card class="no-client-card" *ngIf="selectedClient == null">

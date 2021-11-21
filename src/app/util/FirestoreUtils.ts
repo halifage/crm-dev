@@ -1,5 +1,5 @@
 import {DocumentData, DocumentReference} from "rxfire/firestore/interfaces";
-import {collection, doc, Firestore, onSnapshot} from "@angular/fire/firestore";
+import {collection, doc, Firestore, onSnapshot, Timestamp} from "@angular/fire/firestore";
 import {DocRef} from "../model/doc-ref";
 import {Injectable} from "@angular/core";
 import {BehaviorSubject, Observable} from "rxjs";
@@ -25,4 +25,14 @@ export class FirestoreUtils {
       docRefId: documentRef.id
     }
   }
+
+  public static convertFirestoreTimestampToDate(value: Timestamp | Date | undefined): Date | undefined {
+    if (value == null) {
+      return value
+    } else if (value instanceof Timestamp) {
+      return value.toDate()
+    }
+    return value
+  }
+
 }

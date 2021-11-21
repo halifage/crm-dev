@@ -17,6 +17,8 @@ import {firebaseApp$, getApp} from "@angular/fire/app";
 import firebase from "firebase/compat";
 import Unsubscribe = firebase.Unsubscribe;
 import {Client} from "../model/client";
+import {FirestoreUtils} from "../util/FirestoreUtils";
+import {Activity} from "../model/activity";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,8 @@ export class FirebaseService {
   tasksObservable = this.tasks as Observable<ProspectiveClient[]>
   clients = new BehaviorSubject<Client[]>([]);
   clientsObservable = this.clients as Observable<Client[]>
+  activities = new BehaviorSubject<Activity[]>([]);
+  activitiesObservable = this.activities as Observable<Activity[]>
   subscriptions: Unsubscribe[] = [];
 
   constructor(private firebaseAuth: Auth, private firestoreDb: Firestore) {
@@ -54,7 +58,8 @@ export class FirebaseService {
     const clientsUnsubscribe = onSnapshot(collection(this.firestoreDb, 'clients'), snapshot => {
       let clients: Client[] = []
       snapshot.forEach(doc => {
-        clients.push(<Client>doc.data())
+        let client = <Client>doc.data();
+        clients.push({...client, dateCreated: FirestoreUtils.convertFirestoreTimestampToDate(client.dateCreated)})
       })
       this.clients.next(clients)
     })
@@ -68,7 +73,18 @@ export class FirebaseService {
       })
     })
 
-    this.subscriptions.push(authUnsubscribe, boardsUnsubscribe, tasksUnsubscribe, clientsUnsubscribe);
+    const activitiesUnsubscribe = onSnapshot(collection(this.firestoreDb, 'activities'), (snapshot) => {
+      let activities: Activity[] = []
+      // console.log('App Component: boards snapshot: ', snapshot)
+      snapshot.forEach(doc => {
+        const activity = <Activity>doc.data()
+          activity.nextMeetingDate = FirestoreUtils.convertFirestoreTimestampToDate(activity.nextMeetingDate);
+        activities.push(activity)
+        this.activities.next(activities)
+      })
+    })
+
+    this.subscriptions.push(authUnsubscribe, boardsUnsubscribe, tasksUnsubscribe, clientsUnsubscribe, activitiesUnsubscribe);
   }
 
   setCurrentAuthenticatedUser(user: User | null) {
@@ -81,6 +97,10 @@ export class FirebaseService {
 
   getClients(): Observable<Client[]> {
     return this.clientsObservable
+  }
+
+  getActivities(): Observable<Activity[]> {
+    return this.activitiesObservable
   }
 
   setBoards(boards: Board[]) {
@@ -103,7 +123,6 @@ export class FirebaseService {
     return client
   }
 
-
   async updateClient(client: Client): Promise<Client> {
     console.log(`Update client: client: ${client}`)
     const docRef = doc(collection(this.firestoreDb, 'clients'), client.id)
@@ -111,6 +130,21 @@ export class FirebaseService {
       .then().catch(error => console.log(`Error creating client ${client}: ${error}`))
     return client
   }
+
+  async createActivity(activity: Activity): Promise<Activity> {
+    const docRef = doc(collection(this.firestoreDb, 'activities'))
+    await setDoc(docRef, Object.assign({}, {...activity, id: docRef.id}))
+      .then().catch(error => console.log(`Error creating activity ${activity}: ${error}`))
+    return activity
+  }
+
+  async updateActivity(activity: Activity): Promise<Activity> {
+    const docRef = doc(collection(this.firestoreDb, 'activities'), activity.id)
+    await setDoc(docRef, Object.assign({}, activity), {merge: true})
+      .then().catch(error => console.log(`Error creating activity ${activity}: ${error}`))
+    return activity
+  }
+
 
   async createBoard(board: Board): Promise<Board> {
     const docRef = doc(collection(this.firestoreDb, 'boards'))

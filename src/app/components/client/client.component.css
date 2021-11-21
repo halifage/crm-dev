@@ -67,6 +67,7 @@ mat-tab-header {
 }
 
 .selected-client-name {
+  min-width: 10%;
   max-width: 40%;
   overflow: hidden;
   text-overflow: ellipsis;

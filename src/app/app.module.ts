@@ -30,6 +30,8 @@ import { AddClientComponent } from './dialogs/add-client/add-client.component';
 import { ClientInfoComponent } from './components/client-info/client-info.component';
 import { PhoneInputMaskDirective } from './directives/phone-input-mask.directive';
 import { ActivitiesComponent } from './components/activities/activities.component';
+import { ActivityDialogComponent } from './dialogs/activity-dialog/activity-dialog.component';
+import { DateInputDirective } from './directives/date-input.directive';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { ActivitiesComponent } from './components/activities/activities.componen
     AddClientComponent,
     ClientInfoComponent,
     PhoneInputMaskDirective,
-    ActivitiesComponent
+    ActivitiesComponent,
+    ActivityDialogComponent,
+    DateInputDirective
   ],
   imports: [
     BrowserModule,

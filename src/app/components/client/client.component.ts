@@ -9,6 +9,8 @@ import {BoardDialogComponent} from "../../dialogs/board-dialog/board-dialog.comp
 import {AddClientComponent} from "../../dialogs/add-client/add-client.component";
 import {FirebaseService} from "../../services/firebase.service";
 import {PopupService} from "../../services/popup.service";
+import {User} from "@angular/fire/auth";
+import {fakeAsync} from "@angular/core/testing";
 
 @Component({
   selector: 'app-client-component',
@@ -22,16 +24,16 @@ export class ClientComponent implements OnInit {
   clientInputControl = new FormControl();
   showSpinner: boolean = false;
 
-
   constructor(private dialog: MatDialog, private firebaseService: FirebaseService, private toaster: PopupService) {
   }
 
   ngOnInit(): void {
-
+    this.showSpinner = true
     this.firebaseService.getClients().subscribe(clients => {
       console.log('On Init: Clients: ', clients)
       this.clients = clients
-    })
+      this.showSpinner = false
+    }, error => this.showSpinner = false)
 
     this.filteredClients = this.clientInputControl.valueChanges.pipe(
       startWith(''),
@@ -75,6 +77,7 @@ export class ClientComponent implements OnInit {
           this.toaster.show('Added successfully :)')
         }).finally(() => this.showSpinner = false)
       }
+      this.showSpinner = false
     });
   }
 
@@ -95,6 +98,7 @@ export class ClientComponent implements OnInit {
           this.toaster.show('Updated successfully :)')
         }).finally(() => this.showSpinner = false)
       }
+      this.showSpinner = false
     });
   }
 }

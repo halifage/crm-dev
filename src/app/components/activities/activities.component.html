@@ -1,22 +1,27 @@
 <div class="main-div">
   <div class="actions-container">
-    <mat-form-field appearance="standard" id="search-box">
+    <mat-form-field appearance="standard" id="search-box" *ngIf="activities.length">
       <mat-label>Search</mat-label>
       <input type="text"
              aria-label="client"
              matInput
              [formControl]="filter"
       >
-      <mat-icon id="search" matSuffix *ngIf="!filter.value?.length" matTooltip="Search">search</mat-icon>
-      <mat-icon id="clear" matSuffix *ngIf="filter.value?.length" (click)="clearFilter()" matTooltip="Clear">close
-      </mat-icon>
+      <button mat-icon-button matSuffix *ngIf="!filter.value?.length" matTooltip="Search">
+        <mat-icon>search</mat-icon>
+      </button>
+      <button mat-icon-button matSuffix *ngIf="filter.value?.length" (click)="clearFilter()" matTooltip="Clear">
+        <mat-icon>close</mat-icon>
+      </button>
     </mat-form-field>
     <button mat-raised-button color="primary" (click)="addActivity()" class="add-activity-button">
       <mat-icon>add</mat-icon>
       New
     </button>
   </div>
-  <!--<mat-card class="mat-elevation-z3">-->
+  <mat-card class="no-client-card" *ngIf="!activities.length">
+    <mat-card-title>No activities found for this client</mat-card-title>
+  </mat-card>
   <div *ngIf="activities.length">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="title">
@@ -116,7 +121,7 @@
           <!--          </div>-->
         </th>
         <td mat-cell *matCellDef="let element"
-            matTooltip="{{element.nextMeetingDate}}"> {{element?.nextMeetingDate | date: 'dd/MM/yyyyy'}}</td>
+            matTooltip="{{element.nextMeetingDate}}"> {{element?.nextMeetingDate | date: 'dd/MM/yyyy'}}</td>
       </ng-container>
       <ng-container matColumnDef="meetingReport">
         <th mat-header-cell *matHeaderCellDef>
@@ -152,7 +157,9 @@
           [ngClass]="{'striped-table': even}"></tr>
     </table>
   </div>
-    <mat-paginator [pageSize]="7" aria-label="Select page" [length]="activities.length"
-                   showFirstLastButtons></mat-paginator>
-  <!--</mat-card>-->
+  <mat-paginator *ngIf="activities.length" [pageSize]="7" aria-label="Select page" [length]="activities.length"
+                 showFirstLastButtons></mat-paginator>
+</div>
+<div class="spinner-container" *ngIf="showSpinner">
+  <mat-spinner></mat-spinner>
 </div>
