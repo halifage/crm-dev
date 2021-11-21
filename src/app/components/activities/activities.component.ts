@@ -6,6 +6,9 @@ import {PopupService} from "../../services/popup.service";
 import {FirebaseService} from "../../services/firebase.service";
 import {Activity} from "../../model/activity";
 import {Client} from "../../model/client";
+import {Observable, of} from "rxjs";
+import {FormControl} from "@angular/forms";
+import {map, startWith} from "rxjs/operators";
 
 @Component({
   selector: 'app-activities',
@@ -18,7 +21,7 @@ export class ActivitiesComponent implements OnInit {
 
   displayedColumns: string[] = [
     'title',
-    'description',
+    'status',
     'agentAssignedName',
     'accountStatus',
     'claim',
@@ -29,16 +32,33 @@ export class ActivitiesComponent implements OnInit {
     'actions'
   ];
 
+  filterFields: string[] = [
+    'status',
+    'agentAssignedName',
+    'accountStatus',
+    'claim',
+    'pendingTransaction',
+    'businessProspect',
+    'meetingReport'
+  ]
+
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator | null = null;
   dataSource = new MatTableDataSource<Activity>();
   activities: Activity[] = []
+  filteredActivities: Activity[] = []
+  filter = new FormControl()
 
   constructor(private toaster: PopupService, private firebaseService: FirebaseService) {
   }
 
 
   ngOnInit(): void {
+    this.filter.valueChanges.subscribe(value => {
+      this.filteredActivities = this.filterActivities(value)
+      this.dataSource.data = this.filteredActivities
+    })
+
     this.activities = [
       {
         title: 'Activity 1',
@@ -94,7 +114,7 @@ export class ActivitiesComponent implements OnInit {
         businessProspect: 'business prospect 5',
         nextMeetingDate: new Date(),
         meetingReport: 'meeting with the client and this is what transpired'
-      },{
+      }, {
         title: 'Activity 1',
         status: 'Pending',
         agentName: 'Halif Sarki',
@@ -150,8 +170,8 @@ export class ActivitiesComponent implements OnInit {
         meetingReport: 'meeting with the client and this is what transpired'
       },
     ]
-
-    this.dataSource.data = this.activities
+    this.filteredActivities = this.activities
+    this.dataSource.data = this.filteredActivities
     this.dataSource.paginator = this.paginator;
   }
 
@@ -160,6 +180,19 @@ export class ActivitiesComponent implements OnInit {
   }
 
   editActivity(activity: Activity) {
-    console.log('activity to edit: ', activity )
+    console.log('activity to edit: ', activity)
+  }
+
+  private filterActivities(filterValue: string): Activity[] {
+    return this.activities.filter((activity: any) => {
+      const match = Object.keys(activity).find((field: string) =>
+        this.filterFields.includes(field) && activity[field].toLowerCase().includes(filterValue.toLowerCase()))
+      return !!match;
+    })
+  }
+
+  clearFilter() {
+    this.filter.reset('')
+    this.dataSource.data = this.activities
   }
 }

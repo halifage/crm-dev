@@ -38,36 +38,6 @@ export class ClientComponent implements OnInit {
       map(value => (typeof value === "string" ? value : value?.name)),
       map(name => name ? this.filterClients(name) : this.clients.slice())
     )
-
-    // this.clients.push({
-    //     name: 'Client 1',
-    //     address: 'Address of the client',
-    //     industry: 'Industry of the client',
-    //     contactPersonRole: 'Manager',
-    //     contactPersonPhone: 123456789,
-    //     contactPersonEmail: 'contact@company.com',
-    //     contactPersonName: 'Contact Name',
-    //     email: 'info@company.com',
-    //     phone: 123456789,
-    //     annualVolumes: 1000,
-    //     paymentMode: 'Cash',
-    //     type: 'Category A'
-    //   },
-    //   {
-    //     name: 'Client 2',
-    //     address: 'Address of the client',
-    //     industry: 'Industry of the client'
-    //   },
-    //   {
-    //     name: 'Client 3',
-    //     address: 'Address of the client',
-    //     industry: 'Industry of the client'
-    //   },
-    //   {
-    //     name: 'Client 4',
-    //     address: 'Address of the client',
-    //     industry: 'Industry of the client'
-    //   })
   }
 
 

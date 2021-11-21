@@ -10,7 +10,7 @@
 }
 
 #search-box{
-  width: 30%;
+  width: 20%;
 }
 
 .client-action-buttons {
@@ -20,6 +20,12 @@
   padding-bottom: 2em;
   display: flex;
   justify-content: flex-end;
+}
+
+.no-client-card {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
 }
 
 .client-action-button {
@@ -42,7 +48,7 @@ mat-tab-header {
 }
 
 .client-wrapper {
-  padding: 1em;
+  padding: 0 1em;
   height: 80%;
   background-color: whitesmoke;
 }

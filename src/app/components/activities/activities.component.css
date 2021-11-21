@@ -2,8 +2,12 @@ table {
   width: 100%;
 }
 
-.button-container {
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 1em;
+  height: 8%;
 }
 
 .striped-table{
@@ -37,4 +41,16 @@ th.mat-header-cell {
 
 td.mat-cell {
   padding-right: 2em;
+}
+
+#search-box {
+  width: 20%;
+}
+
+.add-activity-button {
+  height: fit-content;
+}
+
+::ng-deep .mat-form-field-suffix {
+  cursor: pointer;
 }
