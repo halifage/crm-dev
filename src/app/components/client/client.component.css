@@ -13,16 +13,24 @@
   width: 30%;
 }
 
-.add-client-button {
+.client-action-buttons {
+  /*width: 70%;*/
   padding-left: 2em;
-  padding-top: 1em;
+  padding-top: .5em;
+  padding-bottom: 2em;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.client-action-button {
+  margin-left: 2em;
 }
 
 .actions-card {
   display: flex;
   padding-bottom: 0;
-  /*height: 80%;*/
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: center;
 }
 
 mat-tab-group {
@@ -37,4 +45,24 @@ mat-tab-header {
   padding: 1em;
   height: 80%;
   background-color: whitesmoke;
+}
+
+.spinner-container {
+  width: 100%;
+  min-height: 100vh;
+  top: 0;
+  position: absolute;
+  z-index: 1000;
+  background-color: rgba(108, 122, 137, .1);
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected-client-name {
+  max-width: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

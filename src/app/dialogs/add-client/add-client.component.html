@@ -5,6 +5,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Name</mat-label>
         <input matInput formControlName="name">
+        <mat-error *ngIf="clientForm.get('name')?.invalid">This is a required field</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Company Type</mat-label>
@@ -13,10 +14,12 @@
           <mat-option [value]="'Category B'">Category B</mat-option>
           <mat-option [value]="'Category C'">Category C</mat-option>
         </mat-select>
+        <mat-error *ngIf="clientForm.get('type')?.errors">This is a required field</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Sector of Activity</mat-label>
         <input matInput formControlName="industry">
+        <mat-error *ngIf="clientForm.get('industry')?.errors">This is a required field</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Projected Business Volumes</mat-label>
@@ -27,14 +30,17 @@
       <mat-form-field appearance="outline" id="address">
         <mat-label>Address</mat-label>
         <input matInput formControlName="address">
+        <mat-error *ngIf="clientForm.get('address')?.errors">This is a required field</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Phone</mat-label>
-        <input matInput formControlName="phone">
+        <input matInput type="text" formControlName="phone" appPhoneInputMask>
+        <mat-error *ngIf="clientForm.get('phone')?.errors">This is a required field</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email">
+        <mat-error *ngIf="clientForm.get('email')?.errors">Invalid email format</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Payment Mode</mat-label>
@@ -58,15 +64,16 @@
       <mat-form-field appearance="outline">
         <mat-label>Contact Person Email</mat-label>
         <input matInput formControlName="contactPersonEmail">
+        <mat-error *ngIf="clientForm.get('contactPersonEmail')?.errors">Invalid email format</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Contact Person Phone</mat-label>
-        <input matInput formControlName="contactPersonPhone">
+        <input matInput type="text" formControlName="contactPersonPhone" appPhoneInputMask>
       </mat-form-field>
     </div>
   </form>
 </mat-card>
 <mat-dialog-actions>
   <button mat-button color="accent" mat-dialog-close>Cancel</button>
-  <button mat-raised-button color="primary" (click)="addClient()">Save</button>
+  <button mat-raised-button color="primary" (click)="addClient()" [disabled]="clientForm.invalid">Save</button>
 </mat-dialog-actions>

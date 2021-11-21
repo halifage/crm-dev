@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {deleteDoc, Firestore, setDoc} from "@angular/fire/firestore";
-import {FirestoreUtils} from "../Utils/FirestoreUtils";
+import {FirestoreUtils} from "../util/FirestoreUtils";
 import {ProspectiveClient} from "../model/prospective-client";
 
 // @ts-ignore

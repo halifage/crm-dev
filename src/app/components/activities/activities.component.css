@@ -1,0 +1,40 @@
+table {
+  width: 100%;
+}
+
+.button-container {
+  padding: 1em;
+}
+
+.striped-table{
+  background-color: #f9f9f9
+}
+
+.main-div {
+  background-color: whitesmoke;
+  height: 100%;
+}
+
+.mat-column-actions {
+  width: 3%;
+}
+
+.mat-column-meetingReport {
+  width: 20%;
+}
+
+.mat-column-nextMeetingDate {
+  width: 8%;
+}
+
+/*th.mat-header-cell:not(:last-of-type) {*/
+/*  padding-right: 1em;*/
+/*}*/
+
+th.mat-header-cell {
+  padding-right: 2em;
+}
+
+td.mat-cell {
+  padding-right: 2em;
+}

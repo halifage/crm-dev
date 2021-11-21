@@ -28,6 +28,8 @@ import { ClientComponent } from './components/client/client.component';
 import {FilteredSelectComponent} from "./shared/filtered-select/filtered-select.component";
 import { AddClientComponent } from './dialogs/add-client/add-client.component';
 import { ClientInfoComponent } from './components/client-info/client-info.component';
+import { PhoneInputMaskDirective } from './directives/phone-input-mask.directive';
+import { ActivitiesComponent } from './components/activities/activities.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { ClientInfoComponent } from './components/client-info/client-info.compon
     ClientComponent,
     FilteredSelectComponent,
     AddClientComponent,
-    ClientInfoComponent
+    ClientInfoComponent,
+    PhoneInputMaskDirective,
+    ActivitiesComponent
   ],
   imports: [
     BrowserModule,

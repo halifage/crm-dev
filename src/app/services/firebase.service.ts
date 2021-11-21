@@ -16,6 +16,7 @@ import {ProspectiveClient} from "../model/prospective-client";
 import {firebaseApp$, getApp} from "@angular/fire/app";
 import firebase from "firebase/compat";
 import Unsubscribe = firebase.Unsubscribe;
+import {Client} from "../model/client";
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,8 @@ export class FirebaseService {
   boardsObservable = this.boards as Observable<Board[]>
   tasks = new BehaviorSubject<ProspectiveClient[]>([]);
   tasksObservable = this.tasks as Observable<ProspectiveClient[]>
+  clients = new BehaviorSubject<Client[]>([]);
+  clientsObservable = this.clients as Observable<Client[]>
   subscriptions: Unsubscribe[] = [];
 
   constructor(private firebaseAuth: Auth, private firestoreDb: Firestore) {
@@ -48,6 +51,14 @@ export class FirebaseService {
       this.tasks.next(tasks)
     })
 
+    const clientsUnsubscribe = onSnapshot(collection(this.firestoreDb, 'clients'), snapshot => {
+      let clients: Client[] = []
+      snapshot.forEach(doc => {
+        clients.push(<Client>doc.data())
+      })
+      this.clients.next(clients)
+    })
+
     const boardsUnsubscribe = onSnapshot(collection(this.firestoreDb, 'boards'), (snapshot) => {
       let boardsList: Board[] = []
       // console.log('App Component: boards snapshot: ', snapshot)
@@ -57,7 +68,7 @@ export class FirebaseService {
       })
     })
 
-    this.subscriptions.push(authUnsubscribe, boardsUnsubscribe, tasksUnsubscribe);
+    this.subscriptions.push(authUnsubscribe, boardsUnsubscribe, tasksUnsubscribe, clientsUnsubscribe);
   }
 
   setCurrentAuthenticatedUser(user: User | null) {
@@ -66,6 +77,10 @@ export class FirebaseService {
 
   getCurrentAuthenticatedUser(): Observable<User> {
     return this.currentAuthenticatedUserObservable;
+  }
+
+  getClients(): Observable<Client[]> {
+    return this.clientsObservable
   }
 
   setBoards(boards: Board[]) {
@@ -79,6 +94,22 @@ export class FirebaseService {
 
   getTasks(): Observable<ProspectiveClient[]> {
     return this.tasksObservable
+  }
+
+  async createClient(client: Client): Promise<Client> {
+    const docRef = doc(collection(this.firestoreDb, 'clients'))
+    await setDoc(docRef, Object.assign({}, {...client, id: docRef.id}))
+      .then().catch(error => console.log(`Error creating client ${client}: ${error}`))
+    return client
+  }
+
+
+  async updateClient(client: Client): Promise<Client> {
+    console.log(`Update client: client: ${client}`)
+    const docRef = doc(collection(this.firestoreDb, 'clients'), client.id)
+    await setDoc(docRef, Object.assign({}, {...client, id: docRef.id}), {merge: true})
+      .then().catch(error => console.log(`Error creating client ${client}: ${error}`))
+    return client
   }
 
   async createBoard(board: Board): Promise<Board> {

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {collection, deleteDoc, Firestore, onSnapshot, setDoc} from "@angular/fire/firestore";
-import {FirestoreUtils} from "../Utils/FirestoreUtils";
+import {FirestoreUtils} from "../util/FirestoreUtils";
 import {Board} from "../model/board";
 import {BehaviorSubject, Observable} from "rxjs";
 import {SubscriptionData} from "../model/subscription-data";

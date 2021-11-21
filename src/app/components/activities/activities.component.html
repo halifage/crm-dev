@@ -1,0 +1,145 @@
+<div class="main-div">
+<div class="button-container">
+  <button mat-raised-button color="primary" (click)="addActivity()" class="demo-button">
+    <mat-icon>add</mat-icon>
+    New
+  </button>
+</div>
+<!--<mat-card class="mat-elevation-z3">-->
+  <div *ngIf="activities.length">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z5">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Title</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input placeholder="Filter" matInput (input)="filterTasks('prospect', $event)"-->
+          <!--                   [(ngModel)]="filters.set('prospect', 'prospect')">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('prospect')" (click)="clearFilter('prospect')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.title}}"> {{element?.title}}</td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Status</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input placeholder="Filter" matInput (input)="filterTasks('prospect', $event)"-->
+          <!--                   [(ngModel)]="filters.set('prospect', 'prospect')">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('prospect')" (click)="clearFilter('prospect')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.status}}"> {{element?.status}}</td>
+      </ng-container>
+      <ng-container matColumnDef="agentAssignedName">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Agent Name</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input placeholder="Filter" matInput (input)="filterTasks('prospect', $event)"-->
+          <!--                   [(ngModel)]="filters.set('prospect', 'prospect')">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('prospect')" (click)="clearFilter('prospect')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.agentName}}"> {{element?.agentName}}</td>
+      </ng-container>
+      <ng-container matColumnDef="accountStatus">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Account Standing</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input placeholder="Filter" matInput (input)="filterTasks('assignedAgentName', $event)"-->
+          <!--                   [(ngModel)]="filters.set('assignedAgentName', 'assignedAgentName')">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('assignedAgentName')" (click)="clearFilter('assignedAgentName')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element?.accountStatus}}"> {{element?.accountStatus}}</td>
+      </ng-container>
+      <ng-container matColumnDef="claim">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Claim</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input placeholder="Filter" matInput (input)="filterTasks('createdDate', $event)"-->
+          <!--                   [(ngModel)]="filters.set('createdDate','createdDate')">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('createdDate')" (click)="clearFilter('createdDate')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.claim}}"> {{element?.claim}}</td>
+      </ng-container>
+      <ng-container matColumnDef="pendingTransaction">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Pending Transaction</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input (input)="filterTasks('columnTitle', $event)" [(ngModel)]="filters.set('columnTitle','columnTitle')" matInput-->
+          <!--                   placeholder="Filter">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('columnTitle')" (click)="clearFilter('columnTitle')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element"
+            matTooltip="{{element.pendingTransaction}}"> {{element?.pendingTransaction}}</td>
+      </ng-container>
+      <ng-container matColumnDef="businessProspect">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Business Prospect</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input (input)="filterTasks('lastUpdatedDate', $event)" [(ngModel)]="filters.set('lastUpdatedDate','lastUpdatedDate')" matInput-->
+          <!--                   placeholder="Filter">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('lastUpdatedDate')" (click)="clearFilter('lastUpdatedDate')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element"
+            matTooltip="{{element.businessProspect}}"> {{element?.businessProspect}}</td>
+      </ng-container>
+      <ng-container matColumnDef="nextMeetingDate">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Next Meeting Date</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input (input)="filterTasks('assignedassignedAgentNotes', $event)" [(ngModel)]="filters.set('assignedassignedAgentNotes','assignedassignedAgentNotes')" matInput-->
+          <!--                   placeholder="Filter">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('assignedassignedAgentNotes')" (click)="clearFilter('assignedassignedAgentNotes')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element"
+            matTooltip="{{element.nextMeetingDate}}"> {{element?.nextMeetingDate | date: 'dd/MM/yyyyy'}}</td>
+      </ng-container>
+      <ng-container matColumnDef="meetingReport">
+        <th mat-header-cell *matHeaderCellDef>
+          <div class="column-header">Meeting Report</div>
+          <!--          <div class="filter-container">-->
+          <!--            <input (input)="filterTasks('assignedassignedAgentNotes', $event)" [(ngModel)]="filters.set('assignedassignedAgentNotes','assignedassignedAgentNotes')" matInput-->
+          <!--                   placeholder="Filter">-->
+          <!--            <mat-icon class="clear-filter-button" *ngIf="filters.get('assignedassignedAgentNotes')" (click)="clearFilter('assignedassignedAgentNotes')"-->
+          <!--                      color="accent" inline="true">cancel</mat-icon>-->
+          <!--          </div>-->
+        </th>
+        <td mat-cell *matCellDef="let element" matTooltip="{{element.meetingReport}}"> {{element?.meetingReport}}</td>
+      </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>
+                <div class="column-header">Actions</div>
+<!--                <input matInput class="hidden-column-filter" />-->
+              </th>
+              <td mat-cell *matCellDef="let element">
+                <div class="actions-container">
+                  <button color="primary" mat-icon-button matTooltip="edit" aria-label="Edit activity" (click)="editActivity(element)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                </div>
+
+              </td>
+            </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; let even = even; columns: displayedColumns;"
+          [ngClass]="{'striped-table': even}"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[20, 50]" [pageSize]="10" aria-label="Select page" [length]="activities.length" showFirstLastButtons></mat-paginator>
+  </div>
+<!--</mat-card>-->
+</div>
